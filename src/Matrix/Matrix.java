@@ -93,7 +93,7 @@ public class Matrix {
     }
 
     // Menambahkan row1 dengan k*row2
-    public void addRow(int row1, int row2, int k) {
+    public void addRow(int row1, int row2, double k) {
         for (int j = 0; j < this.col; j++) {
             this.mat[row1][j] += k * this.mat[row2][j];
         }
@@ -101,7 +101,7 @@ public class Matrix {
     }
 
     // Mengalikan semua elemen matriks dengan sebuah konstanta k
-    public void scalarMulti(int k) {
+    public void scalarMulti(double k) {
         for (int i = 0; i < this.row; i++) {
             for (int j = 0; j < this.col; j++) {
                 this.mat[i][j] *= k;
