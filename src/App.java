@@ -3,13 +3,17 @@ import Matrix.*;
 public class App {
     public static void main(String[] args) throws Exception {
         System.out.println("Hello, World!");
-        Matrix m = new Matrix(3, 3);
+        Matrix m1 = new Matrix(3, 3);
         // testing funcs
-        m.displayMatrix();
-        m.readMatrix(false);
-        m.displayMatrix();
-        Matrix mt = new Matrix(m.row, m.col);
-        mt = m.transpose();
+        m1.displayMatrix();
+        m1.readMatrix();
+        m1.displayMatrix();
+        Matrix mt = new Matrix(m1.row, m1.col);
+        mt = m1.transpose();
         mt.displayMatrix();
+        Matrix m2 = new Matrix(3, 3);
+        m2.readMatrix();
+        Matrix m3 = Matrix.multiplyMat(m1, m2);
+        m3.displayMatrix();
     }
 }

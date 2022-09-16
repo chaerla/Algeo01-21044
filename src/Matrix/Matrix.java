@@ -38,7 +38,7 @@ public class Matrix {
     }
 
     // Membaca input matriks dari user
-    public void readMatrix(boolean isSquare) {
+    public void readMatrix() {
         int row = 0;
         int col = 0;
         System.out.print("Masukkan jumlah baris matriks: ");
@@ -69,6 +69,21 @@ public class Matrix {
             }
         }
 
+    }
+
+    // Mengembalikan matriks identitas berukuran n x n
+    public Matrix createIdMat(int n) {
+        Matrix ret = new Matrix(n, n);
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; i < n; j++) {
+                if (i == j) {
+                    ret.mat[i][j] = 1;
+                } else {
+                    ret.mat[i][j] = 0;
+                }
+            }
+        }
+        return ret;
     }
 
     // Mengembalikan transpose dari matriks
@@ -116,5 +131,44 @@ public class Matrix {
             isSquare = false;
         }
         return isSquare;
+    }
+
+    // ########### OPERASI MATRIKS ##############
+    // PERKALIAN MATRIKS
+    // Prekondisi jumlah kolom m1 harus = jumlah baris m2
+    public static Matrix multiplyMat(Matrix m1, Matrix m2) {
+        Matrix ret = new Matrix(m1.row, m2.col);
+        for (int i = 0; i < ret.row; i++) {
+            for (int j = 0; j < ret.col; j++) {
+                for (int k = 0; k < m1.col; k++) {
+                    ret.mat[i][j] += m1.mat[i][k] * m2.mat[k][j];
+                }
+            }
+        }
+        return ret;
+    }
+
+    // PENJUMLAHAN MATRIKS
+    // Prekondisi ukuran m1 = m2
+    public static Matrix addMat(Matrix m1, Matrix m2) {
+        Matrix ret = new Matrix(m1.row, m1.col);
+        for (int i = 0; i < ret.row; i++) {
+            for (int j = 0; j < ret.col; j++) {
+                ret.mat[i][j] = m1.mat[i][j] + m2.mat[i][j];
+            }
+        }
+        return ret;
+    }
+
+    // PENGURANGAN MATRIKS
+    // Prekondisi ukuran m1 = m2
+    public static Matrix subsMat(Matrix m1, Matrix m2) {
+        Matrix ret = new Matrix(m1.row, m1.col);
+        for (int i = 0; i < ret.row; i++) {
+            for (int j = 0; j < ret.col; j++) {
+                ret.mat[i][j] = m1.mat[i][j] - m2.mat[i][j];
+            }
+        }
+        return ret;
     }
 }
