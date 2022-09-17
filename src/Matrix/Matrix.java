@@ -28,8 +28,8 @@ public class Matrix {
     // ############## METHODS ##############
     // Mencetak matriks ke layar
     public void displayMatrix() {
-        for (int i = 0; i < this.col; i++) {
-            for (int j = 0; j < this.row; j++) {
+        for (int i = 0; i < this.row; i++) {
+            for (int j = 0; j < this.col; j++) {
                 System.out.print(this.mat[i][j]);
                 System.out.print(" ");
             }
@@ -124,6 +124,12 @@ public class Matrix {
         }
     }
 
+    public void multRow(int row, double k) {
+        for (int i = 0; i < this.col; i++) {
+            this.mat[row][i] *= k;
+        }
+    }
+
     // Mengecek apakah matriks adalah matriks persegi
     public boolean isSquare() {
         boolean isSquare = true;
@@ -172,9 +178,25 @@ public class Matrix {
         return ret;
     }
 
+    // AUGMENTED MATRIKS
+    // Prekondisi jumlah baris m1 = jumlah baris m2
+    public static Matrix augMatrix(Matrix m1, Matrix m2) {
+        Matrix ret = new Matrix(m1.row, m1.col + m2.col);
+        for (int i = 0; i < ret.row; i++) {
+            int j = 0;
+            for (; j < m1.col; j++) {
+                ret.mat[i][j] = m1.mat[i][j];
+            }
+            for (; j < ret.col; j++) {
+                ret.mat[i][j] = m2.mat[i][j - m1.col];
+            }
+        }
+        return ret;
+    }
+
     // Eliminasi Gauss
     // I.S. matriks terdefinisi, F.S. matriks menjadi bentuk matriks eselon baris
-    public static void eliminasiGauss() {
+    public void eliminasiGauss() {
         int r=0, c=0;                                                                   // inisialisasi
         while (r < this.row && c < this.col) {
             int rpivot = r;
@@ -184,9 +206,9 @@ public class Matrix {
             // rpivot == this.row-1 (baris terakhir) ATAU this.mat[rpivot][col] != 0
             if (this.mat[rpivot][c] != 0) {                                             // terdapat elemen bukan 0 dari kolom (pivot)
                 this.swapRow(r, rpivot);                                                // tukar baris dengan baris pivot
-                // pembagian baris dengan nilai pivot
+                this.multRow(rpivot, 1/this.mat[rpivot][c]);                            // pembagian baris dengan nilai pivot
                 for (int i = rpivot+1; i < this.row; i++) {                             // penjumlahan baris untuk setiap baris setelah rpivot
-                    this.addRow(j, i, -this.mat[i][col]);
+                    this.addRow(i, rpivot, -this.mat[i][c]);
                 }
                 r++;
             }
