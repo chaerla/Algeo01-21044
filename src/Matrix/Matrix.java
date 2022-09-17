@@ -171,4 +171,27 @@ public class Matrix {
         }
         return ret;
     }
+
+    // Eliminasi Gauss
+    // I.S. matriks terdefinisi, F.S. matriks menjadi bentuk matriks eselon baris
+    public static void eliminasiGauss() {
+        int r=0, c=0;                                                                   // inisialisasi
+        while (r < this.row && c < this.col) {
+            int rpivot = r;
+            while (rpivot < this.row-1 && this.mat[rpivot][c] == 0) {                   // periksa kolom dari baris rpivot untuk kemunculan elemen bukan 0 (mencari indeks pivot)
+                rpivot++;
+            }
+            // rpivot == this.row-1 (baris terakhir) ATAU this.mat[rpivot][col] != 0
+            if (this.mat[rpivot][c] != 0) {                                             // terdapat elemen bukan 0 dari kolom (pivot)
+                this.swapRow(r, rpivot);                                                // tukar baris dengan baris pivot
+                // pembagian baris dengan nilai pivot
+                for (int i = rpivot+1; i < this.row; i++) {                             // penjumlahan baris untuk setiap baris setelah rpivot
+                    this.addRow(j, i, -this.mat[i][col]);
+                }
+                r++;
+            }
+            c++;
+        }
+        // r == this.row ATAU c == this.col
+    }
 }
