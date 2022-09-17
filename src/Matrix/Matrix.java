@@ -124,6 +124,12 @@ public class Matrix {
         }
     }
 
+    public void multRow(int row, double k) {
+        for (int i = 0; i < this.col; i++) {
+            this.mat[row][i] *= k;
+        }
+    }
+
     // Mengecek apakah matriks adalah matriks persegi
     public boolean isSquare() {
         boolean isSquare = true;
@@ -167,6 +173,22 @@ public class Matrix {
         for (int i = 0; i < ret.row; i++) {
             for (int j = 0; j < ret.col; j++) {
                 ret.mat[i][j] = m1.mat[i][j] - m2.mat[i][j];
+            }
+        }
+        return ret;
+    }
+
+    // AUGMENTED MATRIKS
+    // Prekondisi jumlah baris m1 = jumlah baris m2
+    public static Matrix augMatrix(Matrix m1, Matrix m2) {
+        Matrix ret = new Matrix(m1.row, m1.col + m2.col);
+        for (int i = 0; i < ret.row; i++) {
+            int j = 0;
+            for (; j < m1.col; j++) {
+                ret.mat[i][j] = m1.mat[i][j];
+            }
+            for (; j < ret.col; j++) {
+                ret.mat[i][j] = m2.mat[i][j - m1.col];
             }
         }
         return ret;
