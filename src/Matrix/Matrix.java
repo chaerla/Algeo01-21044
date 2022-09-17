@@ -28,8 +28,8 @@ public class Matrix {
     // ############## METHODS ##############
     // Mencetak matriks ke layar
     public void displayMatrix() {
-        for (int i = 0; i < this.col; i++) {
-            for (int j = 0; j < this.row; j++) {
+        for (int i = 0; i < this.row; i++) {
+            for (int j = 0; j < this.col; j++) {
                 System.out.print(this.mat[i][j]);
                 System.out.print(" ");
             }

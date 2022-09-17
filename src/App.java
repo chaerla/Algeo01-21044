@@ -13,7 +13,7 @@ public class App {
         mt.displayMatrix();
         Matrix m2 = new Matrix(3, 3);
         m2.readMatrix();
-        Matrix m3 = Matrix.multiplyMat(m1, m2);
+        Matrix m3 = Matrix.augMatrix(m1, m2);
         m3.displayMatrix();
     }
 }
