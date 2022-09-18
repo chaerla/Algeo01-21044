@@ -205,10 +205,12 @@ public class Matrix {
             }
             // rpivot == this.row-1 (baris terakhir) ATAU this.mat[rpivot][col] != 0
             if (this.mat[rpivot][c] != 0) {                                             // terdapat elemen bukan 0 dari kolom (pivot)
-                this.swapRow(r, rpivot);                                                // tukar baris dengan baris pivot
-                this.multRow(rpivot, 1/this.mat[rpivot][c]);                            // pembagian baris dengan nilai pivot
-                for (int i = rpivot+1; i < this.row; i++) {                             // penjumlahan baris untuk setiap baris setelah rpivot
-                    this.addRow(i, rpivot, -this.mat[i][c]);
+                if(r != rpivot) {
+                    this.swapRow(r, rpivot);                                            // tukar baris dengan baris pivot
+                }
+                this.multRow(r, 1/this.mat[r][c]);                                      // pembagian baris dengan nilai elemen bukan 0 pertama (pivot)
+                for (int i = r+1; i < this.row; i++) {                                  // penjumlahan baris untuk setiap baris setelah rpivot
+                    this.addRow(i, r, -this.mat[i][c]);
                 }
                 r++;
             }
