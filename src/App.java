@@ -17,8 +17,15 @@ public class App {
         m3.displayMatrix();
 
         System.out.println("\ntest eliminasi gauss\n");
-        Matrix m4 = m2;
+        Matrix m4 = new Matrix(0, 0);
+        m4.readMatrix();
         m4.eliminasiGauss();
         m4.displayMatrix();
+
+        System.out.println("\ntest eliminasi gauss jordan\n");
+        Matrix m5 = new Matrix(0, 0);
+        m5.readMatrix();
+        m5.eliminasiGaussJordan();
+        m5.displayMatrix();
     }
 }

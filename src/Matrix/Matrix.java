@@ -216,4 +216,22 @@ public class Matrix {
         }
         // r == this.row ATAU c == this.col
     }
+
+    // Eliminasi Gauss-Jordan
+    // I.S. matriks terdefinisi, F.S. matriks menjadi bentuk matriks eselon baris tereduksi
+    public void eliminasiGaussJordan() {
+        this.eliminasiGauss();                                                          // lakukan eliminasi Gauss (fase turun)
+        // eliminasi fase naik
+        int r=0, c=0;                                                                   // inisialisasi
+        while (r < this.row && c < this.col) {
+            if (this.mat[r][c] != 0) {                                                  // terdapat elemen bukan 0 dari kolom (pivot)
+                for (int i = r-1; i >= 0; i--) {                                        // penjumlahan baris untuk setiap baris sebelum r
+                    this.addRow(i, r, -this.mat[i][c]);
+                }
+                r++;
+            }
+            c++;
+        }
+        // r == this.row ATAU c == this.col
+    }
 }
