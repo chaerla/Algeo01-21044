@@ -72,10 +72,10 @@ public class Matrix {
     }
 
     // Mengembalikan matriks identitas berukuran n x n
-    public Matrix createIdMat(int n) {
+    public static Matrix createIdMat(int n) {
         Matrix ret = new Matrix(n, n);
         for (int i = 0; i < n; i++) {
-            for (int j = 0; i < n; j++) {
+            for (int j = 0; j < n; j++) {
                 if (i == j) {
                     ret.mat[i][j] = 1;
                 } else {

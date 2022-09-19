@@ -3,6 +3,8 @@ package Matrix;
 import Matrix.*;
 
 public class Determinant {
+    // Determinan Matriks Eliminasi Gauss
+    // Mengembalikan nilai determinan matriks m dengan metode reduksi baris bentuk segitiga menggunakan eliminasi Gauss
     public static double determinanEliminasiGauss(Matrix m) {
         double det = 1;   // inisialisasi nilai determinan dengan 1 (det(I) = 1 sebagai standar)
         int r=0, c=0;                                                                   // inisialisasi

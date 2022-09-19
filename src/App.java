@@ -16,6 +16,11 @@ public class App {
         Matrix m3 = Matrix.augMatrix(m1, m2);
         m3.displayMatrix();
 
+/*        System.out.println("\ntest IdMatrix\n");
+        //Matrix mId = new Matrix(0,0);
+        Matrix mId = Matrix.createIdMat(3);
+        mId.displayMatrix();
+
         System.out.println("\ntest eliminasi gauss\n");
         Matrix m4 = new Matrix(0, 0);
         m4.readMatrix();
@@ -27,5 +32,6 @@ public class App {
         m5.readMatrix();
         m5.eliminasiGaussJordan();
         m5.displayMatrix();
+        */
     }
 }
