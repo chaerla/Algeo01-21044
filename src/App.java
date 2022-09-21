@@ -15,7 +15,7 @@ public class App {
         // m2.readMatrix();
         // Matrix m3 = Matrix.augMatrix(m1, m2);
         // m3.displayMatrix();
-        Crammer.solveSPL(m);
+        SPL.cramersRule(m);
 
         /*
          * System.out.println("\ntest IdMatrix\n");
