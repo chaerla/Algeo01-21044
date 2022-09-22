@@ -9,7 +9,7 @@ public class Matrix {
     public int col;
     public double mat[][];
 
-    static Scanner in = new Scanner(System.in);
+    private static Scanner in = new Scanner(System.in);
     static BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 
     // ############## KONSTRUKTOR ##############
