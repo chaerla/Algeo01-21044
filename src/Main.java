@@ -1,13 +1,13 @@
 import Matrix.*;
 import Utils.*;
 
-public class App {
+public class Main {
         public static void main(String[] args) throws Exception {
                 System.out.println("Hello, World!");
                 Matrix m = new Matrix(3, 3);
                 // testing funcs
                 // m.displayMatrix();
-                // m.readMatrix();
+                m.readMatrix();
                 // m1.displayMatrix();
                 // Matrix mt = new Matrix(m1.row, m1.col);
                 // mt = m1.transpose();
@@ -19,7 +19,7 @@ public class App {
                 // SPL.cramersRule(m);
                 // Utils.matrixToFile(m);
                 Matrix my = new Matrix();
-                my = Utils.readMatrixFromFile();
+                my = Inverse.inversiGaussJordan(m);
                 my.displayMatrix();
 
                 /*
