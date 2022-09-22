@@ -35,4 +35,17 @@ public class Inverse {
         return matinv;
     }
     
+    public static Matrix inversiKofaktor(Matrix m) {
+        Matrix inversMat = new Matrix(m.row, m.col);
+        Matrix adjMat = new Matrix(m.row, m.col);
+        double det = Determinant.determinanKofaktor(m);
+
+        adjMat = m.adjoint();
+        adjMat.scalarMulti(1/det);
+        inversMat = adjMat;
+
+        return inversMat;
+
+
+    }
 }

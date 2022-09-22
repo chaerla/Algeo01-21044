@@ -33,4 +33,17 @@ public class Determinant {
         }
         return det;
     }
+
+    public static double determinanKofaktor(Matrix m) {
+        Matrix matKofaktor = new Matrix(m.row,m.col);
+        double det = 1;
+
+        matKofaktor = m.kofaktor();
+        int i = 0;
+        for(int j=0; j < m.col; j++) {
+            det += (m.mat[i][j] * matKofaktor.mat[i][j]);
+        }
+
+        return det;
+    }
 }
