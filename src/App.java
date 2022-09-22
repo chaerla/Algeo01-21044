@@ -1,12 +1,13 @@
 import Matrix.*;
+import Utils.*;
 
 public class App {
     public static void main(String[] args) throws Exception {
         System.out.println("Hello, World!");
         Matrix m = new Matrix(3, 3);
         // testing funcs
-        m.displayMatrix();
-        m.readMatrix();
+        // m.displayMatrix();
+        // m.readMatrix();
         // m1.displayMatrix();
         // Matrix mt = new Matrix(m1.row, m1.col);
         // mt = m1.transpose();
@@ -15,7 +16,11 @@ public class App {
         // m2.readMatrix();
         // Matrix m3 = Matrix.augMatrix(m1, m2);
         // m3.displayMatrix();
-        SPL.cramersRule(m);
+        // SPL.cramersRule(m);
+        // Utils.matrixToFile(m);
+        Matrix my = new Matrix();
+        my = Utils.readMatrixFromFile();
+        my.displayMatrix();
 
         /*
          * System.out.println("\ntest IdMatrix\n");
