@@ -138,11 +138,18 @@ public class Matrix {
 
     // Mengecek apakah matriks adalah matriks persegi
     public boolean isSquare() {
-        boolean isSquare = true;
-        if (this.row != this.col) {
-            isSquare = false;
+        return (this.row == this.col);
+    }
+
+    public boolean isSingular() {
+        for (int i = 0; i < this.row; i++) {
+            for (int j = 0; j < this.col; j++) {
+                if (this.mat[i][j] != 0) {
+                    return false;
+                }
+            }
         }
-        return isSquare;
+        return true;
     }
 
     // ########### OPERASI MATRIKS ##############

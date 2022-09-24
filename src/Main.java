@@ -18,8 +18,8 @@ public class Main {
                 // m3.displayMatrix();
                 // SPL.cramersRule(m);
                 // Utils.matrixToFile(m);
-                String cramer = SPL.cramersRule(m);
-                System.out.print(cramer);
+                String invers = SPL.gaussMethod(m);
+                System.out.print(invers);
 
                 /*
                  * System.out.println("\ntest IdMatrix\n");
