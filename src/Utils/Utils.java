@@ -3,6 +3,7 @@ package Utils;
 import Matrix.*;
 import java.io.*;
 import java.util.Scanner;
+import java.math.*;
 
 public class Utils {
     private static Scanner in = new Scanner(System.in);
@@ -101,5 +102,11 @@ public class Utils {
             System.out.println(e.getMessage());
         }
         return ret;
+    }
+
+    public static double setPrec(double num, int decPlaces) {
+        BigDecimal bd = new BigDecimal(num).setScale(decPlaces, RoundingMode.HALF_UP);
+        double res = bd.doubleValue();
+        return res;
     }
 }

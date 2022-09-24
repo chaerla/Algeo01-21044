@@ -8,7 +8,7 @@ public class Main {
                 // testing funcs
                 // m.displayMatrix();
                 m.readMatrix();
-                // m1.displayMatrix();
+                m.displayMatrix();
                 // Matrix mt = new Matrix(m1.row, m1.col);
                 // mt = m1.transpose();
                 // mt.displayMatrix();
@@ -18,9 +18,8 @@ public class Main {
                 // m3.displayMatrix();
                 // SPL.cramersRule(m);
                 // Utils.matrixToFile(m);
-                Matrix my = new Matrix();
-                my = Inverse.inversiGaussJordan(m);
-                my.displayMatrix();
+                String cramer = SPL.cramersRule(m);
+                System.out.print(cramer);
 
                 /*
                  * System.out.println("\ntest IdMatrix\n");

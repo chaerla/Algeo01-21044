@@ -1,13 +1,16 @@
 package Matrix;
 
 import Matrix.*;
+import Utils.*;
 
 public class SPL {
 
     // Kaidah Cramer
-    public static void cramersRule(Matrix m) {
+    public static String cramersRule(Matrix m) {
+        String res = new String();
         if (m.row != m.col - 1) {
-            System.out.println("SPL tidak bisa diselesaikan karena jumlah persamaan != jumlah variabel.");
+            res = "SPL tidak bisa diselesaikan karena jumlah persamaan != jumlah variabel.";
+            return res;
         } else {
             Matrix m1 = new Matrix();
             Matrix m2 = new Matrix();
@@ -26,20 +29,22 @@ public class SPL {
                 boolean flag = true;
                 for (int i = 0; i < m.row; i++) {
                     if (detX[i] != 0) {
-                        System.out.println("Tidak ada solusi.");
+                        System.out.println("Tidak ada solusi.\n");
                         flag = false; // Ada determinan yang bernilai tidak 0
                         break;
                     }
                 }
                 if (!flag) {
-                    System.out.println("SPL memiliki banyak solusi.");
+                    res = "SPL memiliki banyak solusi.\n";
+                    return res;
                 }
             } else {
                 for (int i = 0; i < m.row; i++) {
-                    double ans = detX[i] / det;
-                    System.out.println("x-" + (i + 1) + " : " + (ans));
+                    double ans = Utils.setPrec((detX[i] / det), 6);
+                    res += ("x-" + (i + 1) + " : " + (ans) + "\n");
                 }
             }
         }
+        return res;
     }
 }

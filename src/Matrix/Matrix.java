@@ -71,7 +71,7 @@ public class Matrix {
             }
             String[] elmt = line.split(" ", 0);
             for (int j = 0; j < col; j++) {
-                this.mat[i][j] = Utils.toDouble(elmt[j]);
+                this.mat[i][j] = Utils.setPrec(Utils.toDouble(elmt[j]), 8);
             }
         }
 
@@ -298,8 +298,8 @@ public class Matrix {
                         j = 0;
                         i++;
                     }
-                }       
-            } 
+                }
+            }
         }
         return tempMat;
 
@@ -312,7 +312,7 @@ public class Matrix {
 
         for (int r = 0; r < this.row; r++) {
             for (int c = 0; c < this.col; c++) {
-                
+
                 tempMat = this.getTempKofaktor(r, c);
                 det = Determinant.determinanEliminasiGauss(tempMat);
 
@@ -337,5 +337,3 @@ public class Matrix {
         return resultMat;
     }
 }
-
-
