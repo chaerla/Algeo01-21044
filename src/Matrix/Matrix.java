@@ -281,57 +281,23 @@ public class Matrix {
         // r == this.row ATAU c == this.col
     }
 
-    // Matriks Kofaktor
-    // I.S. matriks terdefinisi, F.S. mengubah matriks menjadi matriks kofaktor
 
-    public Matrix getTempKofaktor(int p, int q) {
-        Matrix tempMat = new Matrix(this.col - 1, this.row - 1);
+    public static Matrix kofaktor(Matrix m) {
+        Matrix resultMat = new Matrix(m.row, m.col);
 
-        int i = 0;
-        int j = 0;
-        for (int r = 0; r < this.row; r++) {
-            for (int c = 0; c < this.col; c++) {
-                if (r != p && c != q) {
-                    tempMat.mat[i][j++] = this.mat[r][c];
-
-                    if (j == this.col - 1) {
-                        j = 0;
-                        i++;
-                    }
-                }       
-            } 
-        }
-        return tempMat;
-
-    }
-
-    public Matrix kofaktor() {
-        Matrix resultMat = new Matrix(this.col, this.row);
-        Matrix tempMat = new Matrix(this.col - 1, this.row - 1);
-        double det;
-
-        for (int r = 0; r < this.row; r++) {
-            for (int c = 0; c < this.col; c++) {
-                
-                tempMat = this.getTempKofaktor(r, c);
-                det = Determinant.determinanEliminasiGauss(tempMat);
-
-                if ((r + c + 2) % 2 == 0) {
-                    resultMat.mat[r][c] = det;
-                } else {
-                    resultMat.mat[r][c] = -det;
-                }
-
+        for (int r = 0; r < m.row; r++) {
+            for (int c = 0; c < m.col; c++) {
+                resultMat.mat[r][c] = Determinant.getKofaktor(m, r, c);
             }
         }
         return resultMat;
     }
 
-    public Matrix adjoint() {
-        Matrix resultMat = new Matrix(this.col, this.row);
-        Matrix kofaktorMat = new Matrix(this.col, this.row);
+    public static Matrix adjoint(Matrix m) {
+        Matrix resultMat = new Matrix(m.col, m.row);
+        Matrix kofaktorMat = new Matrix(m.col, m.row);
 
-        kofaktorMat = this.kofaktor();
+        kofaktorMat = kofaktor(m);
         resultMat = kofaktorMat.transpose();
 
         return resultMat;

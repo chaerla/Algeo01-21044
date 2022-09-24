@@ -40,11 +40,16 @@ public class Inverse {
         Matrix adjMat = new Matrix(m.row, m.col);
         double det = Determinant.determinanKofaktor(m);
 
-        adjMat = m.adjoint();
-        adjMat.scalarMulti(1/det);
-        inversMat = adjMat;
+        if (det == 0) {
+            return null;
+        } else {
+            adjMat = Matrix.adjoint(m);
+            adjMat.scalarMulti(1/det);
+            inversMat = adjMat;
 
-        return inversMat;
+            return inversMat;
+        }
+        
 
 
     }

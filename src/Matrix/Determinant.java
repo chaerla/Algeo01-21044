@@ -34,16 +34,55 @@ public class Determinant {
         return det;
     }
 
-    public static double determinanKofaktor(Matrix m) {
-        Matrix matKofaktor = new Matrix(m.row,m.col);
-        double det = 1;
-
-        matKofaktor = m.kofaktor();
+    // Mencari determinan matrix m tanpa baris p dan kolom q
+    public static double getKofaktor(Matrix m, int p, int q) {
+        Matrix tempMat = new Matrix(m.col - 1, m.row - 1);
+        double det;
+        
         int i = 0;
-        for(int j=0; j < m.col; j++) {
-            det += (m.mat[i][j] * matKofaktor.mat[i][j]);
+        int j = 0;
+
+        // Membentuk matriks temp dengan tidak memasukkan baris p dan kolom q
+        for (int r = 0; r < m.row; r++) {
+            for (int c = 0; c < m.col; c++) {
+                if (r != p && c != q) {
+                    tempMat.mat[i][j++] = m.mat[r][c];
+                    if (j == m.col - 1) {
+                        j = 0;
+                        i++;
+                    }
+                }       
+            } 
+        }
+
+        // Jika jumlah baris dan kolom positif, maka kofaktor positif
+        if ((p + q) % 2 == 0) {
+            det = determinanKofaktor(tempMat);
+        } else {
+            det = -determinanKofaktor(tempMat);
         }
 
         return det;
     }
+
+    // Mencari determinan matrix m
+    public static double determinanKofaktor(Matrix m) {
+        double det = 0;
+
+        // Basis
+        if (m.row == 1 && m.col == 1) {
+            det = m.mat[0][0];
+        } 
+        // Rekurens
+        else {
+            int i = 0;
+            for(int j=0; j < m.col; j++) {
+                det += (m.mat[i][j] * getKofaktor(m, i, j));
+
+        }
+        }
+
+        return det;
+    }
+
 }
