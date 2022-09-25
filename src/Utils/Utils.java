@@ -28,38 +28,91 @@ public class Utils {
     }
 
     public static void matrixToFile(Matrix m) {
-        String fileName = new String();
-        System.out.print("Masukkan nama file: ");
-        fileName = in.nextLine();
-        try {
-            FileWriter fWriter = new FileWriter("../test/output/" + fileName);
-            for (int i = 0; i < m.row; i++) {
-                for (int j = 0; j < m.col; j++) {
-                    String temp = Double.toString(m.mat[i][j]);
-                    fWriter.write(temp);
-                    if (j != m.col - 1) {
-                        fWriter.write(" ");
+        System.out.print("Apakah Anda ingin menyimpan hasil ke dalam sebuah file? (Y/N)");
+        String resp = (in.nextLine()).toUpperCase();
+        switch (resp) {
+            case "Y":
+                String fileName = new String();
+                System.out.print("Masukkan nama file: ");
+                fileName = in.nextLine();
+                try {
+                    FileWriter fWriter = new FileWriter("../test/output/" + fileName);
+                    for (int i = 0; i < m.row; i++) {
+                        for (int j = 0; j < m.col; j++) {
+                            String temp = String.format("%.4f", m.mat[i][j]);
+                            fWriter.write(temp);
+                            if (j != m.col - 1) {
+                                fWriter.write(" ");
+                            }
+                        }
+                        fWriter.write("\n");
                     }
+                    fWriter.close();
+                } catch (IOException e) {
+                    System.out.print(e.getMessage());
                 }
-                fWriter.write("\n");
-            }
-            fWriter.close();
-        } catch (IOException e) {
-            System.out.print(e.getMessage());
+                break;
+            case "N":
+                System.out.println("Anda tidak melakukan penyimpanan hasil.");
+                break;
+            default:
+                System.out.println("Input tidak dikenali. Hasil tidak disimpan.");
+                break;
         }
+        // String fileName = new String();
+        // System.out.print("Masukkan nama file: ");
+        // fileName = in.nextLine();
+        // try {
+        // FileWriter fWriter = new FileWriter("../test/output/" + fileName);
+        // for (int i = 0; i < m.row; i++) {
+        // for (int j = 0; j < m.col; j++) {
+        // String temp = Double.toString(m.mat[i][j]);
+        // fWriter.write(temp);
+        // if (j != m.col - 1) {
+        // fWriter.write(" ");
+        // }
+        // }
+        // fWriter.write("\n");
+        // }
+        // fWriter.close();
+        // } catch (IOException e) {
+        // System.out.print(e.getMessage());
+        // }
     }
 
     public static void stringToFile(String s) {
-        String fileName = new String();
-        System.out.print("Masukkan nama file: ");
-        fileName = in.nextLine();
-        try {
-            FileWriter fWriter = new FileWriter("../test/output/" + fileName);
-            fWriter.write(s);
-            fWriter.close();
-        } catch (IOException e) {
-            System.out.print(e.getMessage());
+        System.out.print("Apakah Anda ingin menyimpan hasil ke dalam sebuah file? (Y/N)");
+        String resp = (in.nextLine()).toUpperCase();
+        switch (resp) {
+            case "Y":
+                String fileName = new String();
+                System.out.print("Masukkan nama file: ");
+                fileName = in.nextLine();
+                try {
+                    FileWriter fWriter = new FileWriter("../test/output/" + fileName);
+                    fWriter.write(s);
+                    fWriter.close();
+                } catch (IOException e) {
+                    System.out.print(e.getMessage());
+                }
+                break;
+            case "N":
+                System.out.println("Anda tidak melakukan penyimpanan hasil.");
+                break;
+            default:
+                System.out.println("Input tidak dikenali. Hasil tidak disimpan.");
+                break;
         }
+        // String fileName = new String();
+        // System.out.print("Masukkan nama file: ");
+        // fileName = in.nextLine();
+        // try {
+        // FileWriter fWriter = new FileWriter("../test/output/" + fileName);
+        // fWriter.write(s);
+        // fWriter.close();
+        // } catch (IOException e) {
+        // System.out.print(e.getMessage());
+        // }
     }
 
     public static Matrix readMatrixFromFile() {

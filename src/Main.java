@@ -1,5 +1,6 @@
 import Matrix.*;
 import Utils.*;
+import Aplikasi.*;
 
 public class Main {
         public static void main(String[] args) throws Exception {
@@ -7,8 +8,6 @@ public class Main {
                 Matrix m = new Matrix(3, 3);
                 // testing funcs
                 // m.displayMatrix();
-                m.readMatrix();
-                m.displayMatrix();
                 // Matrix mt = new Matrix(m1.row, m1.col);
                 // mt = m1.transpose();
                 // mt.displayMatrix();
@@ -18,9 +17,7 @@ public class Main {
                 // m3.displayMatrix();
                 // SPL.cramersRule(m);
                 // Utils.matrixToFile(m);
-                String invers = SPL.gaussMethod(m);
-                System.out.print(invers);
-
+                InverseApp.menu();
                 /*
                  * System.out.println("\ntest IdMatrix\n");
                  * //Matrix mId = new Matrix(0,0);

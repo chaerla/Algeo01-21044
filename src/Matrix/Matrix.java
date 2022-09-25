@@ -36,7 +36,7 @@ public class Matrix {
     public void displayMatrix() {
         for (int i = 0; i < this.row; i++) {
             for (int j = 0; j < this.col; j++) {
-                System.out.print(this.mat[i][j]);
+                System.out.printf(String.format("%.4f", this.mat[i][j]));
                 System.out.print(" ");
             }
             System.out.println("");
@@ -90,7 +90,7 @@ public class Matrix {
         int n = 0;
         System.out.print("Input harus berupa matriks segiempat dengan ukuran n x n. Masukkan n: ");
         try {
-            row = in.nextInt();
+            n = in.nextInt();
         } catch (InputMismatchException e) {
             e.printStackTrace();
         }

@@ -31,7 +31,7 @@ public class Inverse {
                 }
             }
         } else { // jika tidak terdapat inverse, kembalikan matriks 0
-            matinv = new Matrix(dimension, dimension);
+            return null;
         }
         return matinv;
     }
