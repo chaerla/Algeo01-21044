@@ -44,16 +44,37 @@ public class Matrix {
     }
 
     // Membaca input matriks dari user
-    public void readMatrix() {
+    // Cara pakai: input row dan col dulu
+
+    // int row = 0;
+    // int col = 0;System.out.print("Masukkan jumlah baris matriks: ");try
+    // {
+    // row = in.nextInt();
+    // }catch(
+    // InputMismatchException e)
+    // {
+    // e.printStackTrace();
+    // }System.out.print("Masukkan jumlah kolom matriks: ");try
+    // {
+    // col = in.nextInt();
+    // }catch(
+    // InputMismatchException e)
+    // {
+    // e.printStackTrace();
+    // }
+    // buat matriks baru, mis. m = new Matrix(row, col)
+    // m.readMatrix
+    public void inputMatrix() {
         int row = 0;
         int col = 0;
-        System.out.print("Masukkan jumlah baris matriks: ");
+        System.out.println("Input harus berupa matriks ukuran m x n.");
+        System.out.print("Masukkan jumlah baris (m) matriks: ");
         try {
             row = in.nextInt();
         } catch (InputMismatchException e) {
             e.printStackTrace();
         }
-        System.out.print("Masukkan jumlah kolom matriks: ");
+        System.out.print("Masukkan jumlah kolom (n) matriks: ");
         try {
             col = in.nextInt();
         } catch (InputMismatchException e) {
@@ -62,7 +83,26 @@ public class Matrix {
         this.row = row;
         this.col = col;
         this.mat = new double[row][col];
-        for (int i = 0; i < row; i++) {
+        this.readMatrix();
+    }
+
+    public void inputSquareMatrix() {
+        int n = 0;
+        System.out.print("Input harus berupa matriks segiempat dengan ukuran n x n. Masukkan n: ");
+        try {
+            row = in.nextInt();
+        } catch (InputMismatchException e) {
+            e.printStackTrace();
+        }
+        this.row = n;
+        this.col = n;
+        this.mat = new double[this.row][this.col];
+        this.readMatrix();
+    }
+
+    // Prekondisi, row, col, dan matriks terdefinisi.
+    public void readMatrix() {
+        for (int i = 0; i < this.row; i++) {
             String line = new String();
             try {
                 line = reader.readLine();
@@ -70,7 +110,7 @@ public class Matrix {
                 e.printStackTrace();
             }
             String[] elmt = line.split(" ", 0);
-            for (int j = 0; j < col; j++) {
+            for (int j = 0; j < this.col; j++) {
                 this.mat[i][j] = Utils.setPrec(Utils.toDouble(elmt[j]), 8);
             }
         }
@@ -142,14 +182,10 @@ public class Matrix {
     }
 
     public boolean isSingular() {
-        for (int i = 0; i < this.row; i++) {
-            for (int j = 0; j < this.col; j++) {
-                if (this.mat[i][j] != 0) {
-                    return false;
-                }
-            }
+        if (Determinant.determinanEliminasiGauss(this) == 0) {
+            return true;
         }
-        return true;
+        return false;
     }
 
     // ########### OPERASI MATRIKS ##############
