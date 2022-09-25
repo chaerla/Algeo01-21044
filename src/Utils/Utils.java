@@ -28,7 +28,7 @@ public class Utils {
     }
 
     public static void matrixToFile(Matrix m) {
-        System.out.print("Apakah Anda ingin menyimpan hasil ke dalam sebuah file? (Y/N)");
+        System.out.print("Apakah Anda ingin menyimpan hasil ke dalam sebuah file (Y/N)? ");
         String resp = (in.nextLine()).toUpperCase();
         switch (resp) {
             case "Y":
@@ -39,7 +39,7 @@ public class Utils {
                     FileWriter fWriter = new FileWriter("../test/output/" + fileName);
                     for (int i = 0; i < m.row; i++) {
                         for (int j = 0; j < m.col; j++) {
-                            String temp = String.format("%.4f", m.mat[i][j]);
+                            String temp = String.format("%.4f", m.mat[i][j] + 0.00000000);
                             fWriter.write(temp);
                             if (j != m.col - 1) {
                                 fWriter.write(" ");

@@ -21,12 +21,13 @@ public class InverseApp {
             e.printStackTrace();
         }
         Matrix m = new Matrix();
-        m.inputSquareMatrix();
         switch (method) {
             case 1:
+                m.inputSquareMatrix();
                 m = Inverse.inversiGaussJordan(m);
                 break;
             case 2:
+                m.inputSquareMatrix();
                 m = Inverse.inversiKofaktor(m);
                 break;
             default:
@@ -35,10 +36,15 @@ public class InverseApp {
         }
         if (inputValid) {
             if (m != null) {
+                System.out.println();
+                System.out.println("Matriks balikan: ");
                 m.displayMatrix();
+                System.out.println();
                 Utils.matrixToFile(m);
             } else {
+                System.out.println();
                 String ret = "Matriks tidak memiliki balikan";
+                System.out.println();
                 System.out.println(ret);
                 Utils.stringToFile(ret);
             }

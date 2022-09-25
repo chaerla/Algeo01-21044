@@ -36,7 +36,7 @@ public class Matrix {
     public void displayMatrix() {
         for (int i = 0; i < this.row; i++) {
             for (int j = 0; j < this.col; j++) {
-                System.out.printf(String.format("%.4f", this.mat[i][j]));
+                System.out.printf(String.format("%.4f", this.mat[i][j] + 0.00000000));
                 System.out.print(" ");
             }
             System.out.println("");
@@ -102,6 +102,7 @@ public class Matrix {
 
     // Prekondisi, row, col, dan matriks terdefinisi.
     public void readMatrix() {
+        System.out.println("Masukkan matriks:");
         for (int i = 0; i < this.row; i++) {
             String line = new String();
             try {
@@ -362,7 +363,7 @@ public class Matrix {
                 if ((r + c + 2) % 2 == 0) {
                     resultMat.mat[r][c] = det;
                 } else {
-                    resultMat.mat[r][c] = -det;
+                    resultMat.mat[r][c] = -1 * det;
                 }
 
             }
