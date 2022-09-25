@@ -17,7 +17,8 @@ public class Main {
                 // m3.displayMatrix();
                 // SPL.cramersRule(m);
                 // Utils.matrixToFile(m);
-                InverseApp.menu();
+                // InverseApp.menu();
+                BicubicInterpolationApp.BI();
                 /*
                  * System.out.println("\ntest IdMatrix\n");
                  * //Matrix mId = new Matrix(0,0);

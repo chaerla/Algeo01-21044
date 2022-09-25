@@ -81,7 +81,7 @@ public class Utils {
     }
 
     public static void stringToFile(String s) {
-        System.out.print("Apakah Anda ingin menyimpan hasil ke dalam sebuah file? (Y/N)");
+        System.out.print("Apakah Anda ingin menyimpan hasil ke dalam sebuah file (Y/N)? ");
         String resp = (in.nextLine()).toUpperCase();
         switch (resp) {
             case "Y":
