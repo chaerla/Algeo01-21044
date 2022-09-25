@@ -43,6 +43,7 @@ public class BicubicInterpolationApp {
 
     public static void readFile(Matrix inputMat, double[] point) {
         String fileName = new String();
+        in.nextLine();
         System.out.print("Masukkan nama file: ");
         fileName = in.nextLine();
         try {
@@ -82,15 +83,51 @@ public class BicubicInterpolationApp {
         return res;
     }
 
-    public static void BI() {
-        Matrix X = getMatrixX();
-        Matrix invX = Inverse.inversiGaussJordan(X);
+    public static void menu() {
+        System.out.println();
+        System.out.println("*************************************************************************");
+        System.out.println("                           INTERPOLASI BICUBIC");
+        System.out.println("*************************************************************************");
+        System.out.println("1. Keyboard input");
+        System.out.println("2. File input");
+        System.out.print("Masukkan pilihan input: ");
+        int method = 0;
+        boolean inputValid = true;
         Matrix inputMat = new Matrix(4, 4);
         double[] point = new double[2];
-        readFile(inputMat, point);
-        Matrix y = getMatrixY(inputMat);
-        Matrix a = Matrix.multiplyMat(invX, y);
-        double res = solve(point, a).mat[0][0];
-        System.out.printf("%.6f\n", res);
+        try {
+            method = in.nextInt();
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        System.out.println();
+        switch (method) {
+            case 1:
+                System.out.println("Matriks input harus berupa matriks 4x4.");
+                inputMat.readMatrix();
+                point[0] = Utils.setPrec(in.nextDouble(), 8);
+                point[1] = Utils.setPrec(in.nextDouble(), 8);
+                break;
+            case 2:
+                readFile(inputMat, point);
+                break;
+            default:
+                inputValid = false;
+                System.out.println("Input tidak dikenali. Mohon hanya masukkan 1 atau 2.\n");
+        }
+        if (inputValid) {
+            Matrix X = getMatrixX();
+            Matrix invX = Inverse.inversiGaussJordan(X);
+            Matrix y = getMatrixY(inputMat);
+            Matrix a = Matrix.multiplyMat(invX, y);
+            double res = solve(point, a).mat[0][0];
+            System.out.print("Hasil interpolasi bikubik f(");
+            System.out.printf("%.2f", point[0]);
+            System.out.print(",");
+            System.out.printf("%.2f", point[1]);
+            System.out.print("): ");
+            System.out.printf("%.6f\n", res);
+            Utils.stringToFile(String.format("%.6f", res));
+        }
     }
 }

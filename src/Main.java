@@ -1,41 +1,59 @@
 import Matrix.*;
 import Utils.*;
 import Aplikasi.*;
+import java.util.*;
 
 public class Main {
+        private static Scanner in = new Scanner(System.in);
+
         public static void main(String[] args) throws Exception {
-                System.out.println("Hello, World!");
-                Matrix m = new Matrix(3, 3);
-                // testing funcs
-                // m.displayMatrix();
-                // Matrix mt = new Matrix(m1.row, m1.col);
-                // mt = m1.transpose();
-                // mt.displayMatrix();
-                // Matrix m2 = new Matrix(3, 3);
-                // m2.readMatrix();
-                // Matrix m3 = Matrix.augMatrix(m1, m2);
-                // m3.displayMatrix();
-                // SPL.cramersRule(m);
-                // Utils.matrixToFile(m);
-                // InverseApp.menu();
-                BicubicInterpolationApp.BI();
-                /*
-                 * System.out.println("\ntest IdMatrix\n");
-                 * //Matrix mId = new Matrix(0,0);
-                 * Matrix mId = Matrix.createIdMat(3);
-                 * mId.displayMatrix();
-                 * 
-                 * System.out.println("\ntest eliminasi gauss\n");
-                 * Matrix m4 = new Matrix(0, 0);
-                 * m4.readMatrix();
-                 * m4.eliminasiGauss();
-                 * m4.displayMatrix();
-                 * 
-                 * System.out.println("\ntest eliminasi gauss jordan\n");
-                 * Matrix m5 = new Matrix(0, 0);
-                 * m5.readMatrix();
-                 * m5.eliminasiGaussJordan();
-                 * m5.displayMatrix();
-                 */
+                int choice = -1;
+                while (choice != 7) {
+                        System.out.println();
+                        System.out.println("*************************************************************************");
+                        System.out.println("                                 MENU");
+                        System.out.println("*************************************************************************");
+                        System.out.println("1. Sistem Persamaan Linear");
+                        System.out.println("2. Determinan");
+                        System.out.println("3. Matriks Balikan");
+                        System.out.println("4. Interpolasi Polinom");
+                        System.out.println("5. Interpolasi Bicubic");
+                        System.out.println("6. Regresi Linear Berganda");
+                        System.out.println("7. Keluar");
+                        System.out.print("Masukkan pilihan menu: ");
+                        try {
+                                choice = in.nextInt();
+                        } catch (Exception e) {
+                                e.printStackTrace();
+                        }
+                        switch (choice) {
+                                case 1:
+                                        // SPL
+                                case 2:
+                                        // Determinan
+                                case 3:
+                                        InverseApp.menu();
+                                        break;
+                                case 4:
+                                        // Interpolasi polinom
+                                case 5:
+                                        BicubicInterpolationApp.menu();
+                                        break;
+                                case 6:
+                                        // RLB
+                                case 7:
+                                        System.out.println(
+                                                        "*************************************************************************");
+                                        System.out.println("Terima kasih telah menggunakan ");
+                                        System.out.println(
+                                                        "*************************************************************************");
+                                        break;
+                                default:
+                                        System.out.println(
+                                                        "Input tidak dikenali. Mohon hanya masukkan bilangan bulat antara 1-7.");
+                                        break;
+                        }
+                }
+
         }
 }

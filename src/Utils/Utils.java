@@ -28,6 +28,7 @@ public class Utils {
     }
 
     public static void matrixToFile(Matrix m) {
+        System.out.println();
         System.out.print("Apakah Anda ingin menyimpan hasil ke dalam sebuah file (Y/N)? ");
         String resp = (in.nextLine()).toUpperCase();
         switch (resp) {
@@ -81,6 +82,7 @@ public class Utils {
     }
 
     public static void stringToFile(String s) {
+        System.out.println();
         System.out.print("Apakah Anda ingin menyimpan hasil ke dalam sebuah file (Y/N)? ");
         String resp = (in.nextLine()).toUpperCase();
         switch (resp) {
