@@ -30,12 +30,14 @@ public class Main {
                                 case 1:
                                         // SPL
                                 case 2:
-                                        // Determinan
+                                        DeterminantApp.menu();
+                                        break;
                                 case 3:
                                         InverseApp.menu();
                                         break;
                                 case 4:
-                                        // Interpolasi polinom
+                                        InterpolasiApp.menu();
+                                        break;
                                 case 5:
                                         BicubicInterpolationApp.menu();
                                         break;
