@@ -10,6 +10,7 @@ public class BicubicInterpolationApp {
     private static Scanner in = new Scanner(System.in);
 
     // persamaan matrix : y = Xa
+
     public static Matrix getMatrixX() {
         Matrix ret = new Matrix(16, 16);
         int row = 0;

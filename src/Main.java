@@ -40,6 +40,7 @@ public class Main {
                                         BicubicInterpolationApp.menu();
                                         break;
                                 case 6:
+                                        RLBApp.menu();
                                         // RLB
                                 case 7:
                                         System.out.println(

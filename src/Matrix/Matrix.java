@@ -246,7 +246,7 @@ public class Matrix {
 
     // SPLIT MATRIKS
     // m1 dan m2 adalah hasil dari split matrix. colNum adalah jumlah kolom m1.
-    public void splitMatriks(Matrix m1, Matrix m2, int colNum) {
+    public void splitMatrix(Matrix m1, Matrix m2, int colNum) {
         m1.row = this.row;
         m2.row = this.row;
         m1.col = colNum;
