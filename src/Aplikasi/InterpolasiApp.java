@@ -123,6 +123,7 @@ public class InterpolasiApp {
                     } catch (Exception e) {
                         System.out.println(e.getMessage());
                     }
+                    System.out.println("Masukkan pasangan titik: ");
                     mat = inputToMatrix(n);
                     System.out.println("Masukkan nilai x yang ingin ditaksir nilai fungsinya: ");
                     
@@ -141,18 +142,27 @@ public class InterpolasiApp {
                     System.out.println("Input tidak dikenali. Mohon hanya masukkan 1 atau 2.\n");
             }
         }
-        Matrix ans = solusiMatrix(mat);
+
+        if(inputValid) {
+            Matrix ans = solusiMatrix(mat);
         
-        String polinom = printPolinom(ans);
-        System.out.println("Polinom yang melalui titik-titik tersebut yaitu: ");
-        System.out.println(polinom);
+            String polinom = printPolinom(ans);
+            System.out.println("Polinom yang melalui titik-titik tersebut yaitu: ");
+            System.out.println(polinom);
+
+            String res = polinom;
 
 
-        if (method == 1) {
-            String taksiran = printTaksiran(ans, x);
-            System.out.println("Taksiran nilai fungsi dari nilai x yang dimasukkan yaitu: ");
-            System.out.println(taksiran);
+            if (method == 1) {
+                String taksiran = printTaksiran(ans, x);
+                System.out.println("Taksiran nilai fungsi dari nilai x yang dimasukkan yaitu: ");
+                System.out.println(taksiran);
+                res += "\n" + taksiran;
+            }
+
+            Utils.stringToFile(res);
         }
+        
         
     }
 }

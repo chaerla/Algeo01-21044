@@ -71,6 +71,9 @@ public class DeterminantApp {
                     m.inputSquareMatrix();
                 }
                 det = Determinant.determinanEliminasiGauss(m);
+                if (det == -0.0) {
+                    det += 0.0;
+                } 
                 break;
             case 2:
                 if (fromFile()) {
@@ -89,7 +92,7 @@ public class DeterminantApp {
                 System.out.println();
                 System.out.print("Determinan: ");
                 System.out.printf("%.4f", det);
-                Utils.matrixToFile(m);
+                Utils.stringToFile(String.format("%.4f", det));
             } 
         }
     }
