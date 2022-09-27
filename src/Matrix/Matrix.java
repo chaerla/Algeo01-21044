@@ -83,6 +83,7 @@ public class Matrix {
         this.row = row;
         this.col = col;
         this.mat = new double[row][col];
+        System.out.println("Masukkan matriks:");
         this.readMatrix();
     }
 
@@ -97,12 +98,12 @@ public class Matrix {
         this.row = n;
         this.col = n;
         this.mat = new double[this.row][this.col];
+        System.out.println("Masukkan matriks:");
         this.readMatrix();
     }
 
     // Prekondisi, row, col, dan matriks terdefinisi.
     public void readMatrix() {
-        System.out.println("Masukkan matriks:");
         for (int i = 0; i < this.row; i++) {
             String line = new String();
             try {
