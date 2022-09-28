@@ -148,7 +148,7 @@ public class Utils {
                 String s = fReader.nextLine();
                 String[] temp = s.split(" ", 0);
                 for (int j = 0; j < temp.length; j++) {
-                    ret.mat[i][j] = toDouble(temp[j]);
+                    ret.mat[i][j] = Utils.setPrec(Utils.toDouble(temp[j - 1]), 8);
                 }
                 i++;
             }
