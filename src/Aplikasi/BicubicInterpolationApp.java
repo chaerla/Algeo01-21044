@@ -106,7 +106,10 @@ public class BicubicInterpolationApp {
             case 1:
                 System.out.println("Matriks input harus berupa matriks 4x4.");
                 inputMat.readMatrix();
+                System.out.println("Masukkan titik (a,b) yang akan diinterpolasi.");
+                System.out.print("Masukkan a: ");
                 point[0] = Utils.setPrec(in.nextDouble(), 8);
+                System.out.print("Masukkan b: ");
                 point[1] = Utils.setPrec(in.nextDouble(), 8);
                 break;
             case 2:

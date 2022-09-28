@@ -36,7 +36,7 @@ public class Matrix {
     public void displayMatrix() {
         for (int i = 0; i < this.row; i++) {
             for (int j = 0; j < this.col; j++) {
-                System.out.printf(String.format("%.4f", this.mat[i][j] + 0.00000000));
+                System.out.printf(String.format("%.4f", (Utils.setPrec(this.mat[i][j], 8))));
                 System.out.print(" ");
             }
             System.out.println("");
@@ -316,7 +316,7 @@ public class Matrix {
         while (r < this.row && c < this.col) {
             if (this.mat[r][c] != 0) { // terdapat elemen bukan 0 dari kolom (pivot)
                 for (int i = r - 1; i >= 0; i--) { // penjumlahan baris untuk setiap baris sebelum r
-                    this.addRow(i, r, -this.mat[i][c]);
+                    this.addRow(i, r, -1 * this.mat[i][c]);
                 }
                 r++;
             }
