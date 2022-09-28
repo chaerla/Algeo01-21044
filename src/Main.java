@@ -26,7 +26,8 @@ public class Main {
                         }
                         switch (choice) {
                                 case 1:
-                                        // SPL
+                                        SPLApp.menu();
+                                        break;
                                 case 2:
                                         DeterminantApp.menu();
                                         break;

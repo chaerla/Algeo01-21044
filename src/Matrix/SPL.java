@@ -8,57 +8,161 @@ public class SPL {
     // 1. Metode Eliminasi Gauss
     public static String gaussMethod(Matrix m) {
         String res = new String();
-        Matrix m1 = new Matrix();
-        Matrix m2 = new Matrix();
-        m.splitMatrix(m1, m2, m.col - 1);
-        if (m.row != m.col - 1) {
-            res = "SPL tidak bisa diselesaikan karena jumlah persamaan != jumlah variabel.\n";
-            return res;
+        //Matrix mx = mx.copyMatrix(m);
+
+        m.eliminasiGauss();
+
+        int p=0;    // label variabel parametrik
+        int[] param = new int[m.col];  // variabel parametrik
+        for (int i=0; i < m.col; i++){
+            param[i] = -1;   // variabel parametrik x_(i+1); label berdasarkan p, inisialisasi dengan -1
         }
-        if (m.mat[m.row - 1][m.col - 2] == 0) {
-            if (m.mat[m.row - 1][m.col - 1] == 0) {
-                res = "SPL memiliki banyak solusi.\n";
-            } else {
-                res = "SPL tidak memiliki solusi. \n";
+        
+        double[][] subs = new double[m.row][m.col];
+
+        boolean noSolution = false;
+        int r = m.row-1, c;
+        while(r >= 0 && !noSolution){
+            c = 0;
+            while(m.mat[r][c] == 0 && c < mat.col-1){
+                c++;
             }
-            return res;
-        }
-        double ansArr[] = new double[m1.row];
-        for (int i = m.row - 1; i >= 0; i--) {
-            ansArr[i] = m.mat[i][m.row];
-            for (int j = i + 1; j < m.row; j++) {
-                ansArr[i] -= m.mat[i][j] * ansArr[j];
+            // m.mat[r][c] == 0 ATAU c == m.col-1 (dicapai kolom terakhir / vektor kolom konstanta)
+            if(c == mat.col-1 && m.mat[r][c != 0]){
+                noSolution = true;
             }
-            ansArr[i] = ansArr[i] / m.mat[i][i];
+            for(int i=c+1; i < m.col; i++){
+                
+            }
         }
 
-        for (int i = 0; i < m.row; i++) {
-            double ans = Utils.setPrec((ansArr[i]), 6);
-            res += ("x-" + (i + 1) + " : " + (ans) + "\n");
+        /*double ans;
+        boolean hasparam;
+        int r=0, c=0;
+        while(r < m.row && c < m.col-1){
+            if(m.mat[r][c] != 0){   // maju hingga terdapat elemen bukan 0 (leading 1) atau kolom terakhir
+                res += ("x_" + (c + 1) + " =");
+                hasparam = false;
+                for(int i=c+1; i < m.col-1; i++){
+                    if(m.mat[r][i] != 0){
+                        if(param[i] == -1){
+                            p++;
+                            param[i] = p;
+                        }
+                        ans = Utils.setPrec((-m.mat[r][i]), 6);
+                        if(ans < 0){
+                            res += (" - " + (-ans));
+                        } else {
+                            res += (" + " + (ans));
+                        }
+                        res += ("*" + "t_" + (param[i]));
+
+                        hasparam = true;
+                    }
+                }
+                // kolom terakhir, kolom vektor konstanta
+                ans = Utils.setPrec((0.000000 + m.mat[r][m.col-1]), 6);
+                if(hasparam){
+                    if(ans < 0){
+                            res += (" - " + (-ans));
+                    } else if(ans > 0) {
+                            res += (" + " + (ans));
+                    }
+                } else {
+                    res += (" " + (ans));
+                }
+                res += ("\n");
+                r++;    // lanjutkan ke baris berikutnya
+            } else if(param[c] != -1){
+                res += ("x_" + (c + 1) + " = t_" + (param[c]) + "\n");
+            }
+            c++;
+        }*/
+        /* r == m.row (telah dilewati baris terakhir)
+        ATAU r == m.col-1 (dicapai kolom terakhir / vektor kolom konstanta) */
+        if (r < m.row && m.mat[r][c] != 0){
+            res = "SPL tidak memiliki solusi.\n";
+        }
+        return res;
+    }
+
+    // 2. Metode Eliminasi Gauss-Jordan
+    public static String gaussjordanMethod(Matrix m) {
+        String res = new String();
+        //Matrix mx = mx.copyMatrix(m);
+
+        m.eliminasiGaussJordan();
+
+        int p=0;    // label variabel parametrik
+        int[] param = new int[m.col];  // variabel parametrik
+        for (int i=0; i < m.col; i++){
+            param[i] = -1;   // variabel parametrik x_(i+1); label berdasarkan p, inisialisasi dengan -1
+        }
+        
+        double ans;
+        boolean hasparam;
+        int r=0, c=0;
+        while(r < m.row && c < m.col-1){
+            if(m.mat[r][c] != 0){   // maju hingga terdapat elemen bukan 0 (leading 1) atau kolom terakhir
+                res += ("x_" + (c + 1) + " =");
+                hasparam = false;
+                for(int i=c+1; i < m.col-1; i++){
+                    if(m.mat[r][i] != 0){
+                        if(param[i] == -1){
+                            p++;
+                            param[i] = p;
+                        }
+                        ans = Utils.setPrec((-m.mat[r][i]), 6);
+                        if(ans < 0){
+                            res += (" - " + (-ans));
+                        } else {
+                            res += (" + " + (ans));
+                        }
+                        res += ("*" + "t_" + (param[i]));
+
+                        hasparam = true;
+                    }
+                }
+                // kolom terakhir, kolom vektor konstanta
+                ans = Utils.setPrec((0.000000 + m.mat[r][m.col-1]), 6);
+                if(hasparam){
+                    if(ans < 0){
+                            res += (" - " + (-ans));
+                    } else if(ans > 0) {
+                            res += (" + " + (ans));
+                    }
+                } else {
+                    res += (" " + (ans));
+                }
+                res += ("\n");
+                r++;    // lanjutkan ke baris berikutnya
+            } else if(param[c] != -1){
+                res += ("x_" + (c + 1) + " = t_" + (param[c]) + "\n");
+            }
+            c++;
+        }
+        /* r == m.row (telah dilewati baris terakhir)
+        ATAU c == m.col-1 (dicapai kolom terakhir / vektor kolom konstanta) */
+        if (r < m.row && m.mat[r][c] != 0){
+            res = "SPL tidak memiliki solusi.\n";
         }
         return res;
     }
 
     // 3. Metode Invers
-
     public static String inversMethod(Matrix m) {
         String res = new String();
         Matrix m1 = new Matrix();
         Matrix m2 = new Matrix();
         m.splitMatrix(m1, m2, m.col - 1);
-        if (m1.isSingular()) {
-            res = "SPL memiliki banyak solusi atau tidak memiliki solusi. Silahkan gunakan metode lain. \n";
-            return res;
+        if (m1.isSingular() || !m1.isSquare()) { // matriks tidak memiliki invers, tidak ada solusi unik
+            res = "SPL memiliki banyak solusi atau tidak memiliki solusi. Silakan gunakan metode lain.\n";
         } else {
-            if (!m1.isSquare()) {
-                res = "SPL tidak bisa diselesaikan karena jumlah persamaan != jumlah variabel.\n";
-                return res;
-            }
             m1 = Inverse.inversiGaussJordan(m1);
             Matrix ansMat = Matrix.multiplyMat(m1, m2);
             for (int i = 0; i < ansMat.row; i++) {
-                double ans = Utils.setPrec((ansMat.mat[i][0]), 6);
-                res += ("x-" + (i + 1) + " : " + (ans) + "\n");
+                double ans = Utils.setPrec((0.000000 + ansMat.mat[i][0]), 6);
+                res += ("x_" + (i + 1) + " = " + (ans) + "\n");
             }
         }
         return res;
@@ -67,41 +171,25 @@ public class SPL {
     // 4. Kaidah Cramer
     public static String cramersRule(Matrix m) {
         String res = new String();
-        if (m.row != m.col - 1) {
-            res = "SPL tidak bisa diselesaikan karena jumlah persamaan != jumlah variabel.\n";
-            return res;
+        Matrix m1 = new Matrix();
+        Matrix m2 = new Matrix();
+        m.splitMatrix(m1, m2, m.col - 1);
+        if (m1.isSingular() || !m1.isSquare()) { // matriks tidak memiliki invers, tidak ada solusi unik
+            res = "SPL memiliki banyak solusi atau tidak memiliki solusi. Silakan gunakan metode lain.\n";
         } else {
-            Matrix m1 = new Matrix();
-            Matrix m2 = new Matrix();
-            m.splitMatrix(m1, m2, m.col - 2);
             double det = Determinant.determinanEliminasiGauss(m);
-            double[] detX = new double[m.row];
+            double[] valX = new double[m.row];
             Matrix temp = new Matrix();
             for (int i = 0; i < m1.col; i++) {
                 temp.copyMatrix(m1);
-                for (int j = 0; j < m1.row; j++) {
+                for (int j = 0; j < m1.row; j++) {  // temp <- masukkan kolom ke i matriks persamaan dengan matriks hasil
                     temp.mat[j][i] = m2.mat[j][0];
                 }
-                detX[i] = Determinant.determinanEliminasiGauss(temp);
+                valX[i] = Determinant.determinanEliminasiGauss(temp)/det;   // hitung nilai xi
             }
-            if (det == 0) {
-                boolean flag = true;
-                for (int i = 0; i < m.row; i++) {
-                    if (detX[i] != 0) {
-                        System.out.println("SPL tidak memiliki solusi.\n");
-                        flag = false; // Ada determinan yang bernilai tidak 0
-                        break;
-                    }
-                }
-                if (!flag) {
-                    res = "SPL memiliki banyak solusi.\n";
-                    return res;
-                }
-            } else {
-                for (int i = 0; i < m.row; i++) {
-                    double ans = Utils.setPrec((detX[i] / det), 6);
-                    res += ("x-" + (i + 1) + " : " + (ans) + "\n");
-                }
+            for (int i = 0; i < m.row; i++) {
+                double ans = Utils.setPrec((0.000000 + valX[i] / det), 6);
+                res += ("x_" + (i + 1) + " = " + (ans) + "\n");
             }
         }
         return res;
