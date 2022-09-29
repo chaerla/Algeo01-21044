@@ -9,7 +9,7 @@ import java.util.*;
 public class InterpolasiApp {
     private static Scanner in = new Scanner(System.in);
 
-    // Mengubah input titik menjadi Augmented Matrix
+    // Mengubah input titik menjadi Augmented Matrix persamaan
     public static Matrix inputToMatrix(int n) {
         Matrix res = new Matrix(n, n + 1);
         Matrix inputMat = new Matrix(n, 2);
@@ -28,10 +28,56 @@ public class InterpolasiApp {
         return res;
     }
 
-    // Mengubah file titik menjadi Augmented Matrix
-    public static Matrix fileToMatrix() {
-        Matrix inputMat = new Matrix();
-        inputMat = Utils.readMatrixFromFile();
+    // Membaca file dan menghasilkan ret sebagai matriks titik, x sebagai array nilai yang ditaksir
+    public static void readFileInterpolasi(Matrix ret, double[] x) {
+        String fileName = new String();
+        in.nextLine();
+        System.out.print("Masukkan nama file: ");
+        fileName = in.nextLine();
+        int rowcnt = 0;
+        // int colcnt = 0;
+        // Matrix ret = new Matrix();
+        try {
+            File file = new File("../test/input/" + fileName);
+            Scanner fReader = new Scanner(file);
+            while (fReader.hasNextLine()) {
+                String s = fReader.nextLine();
+                String[] temp = s.split(" ", 0);
+                rowcnt++;
+            }
+            fReader.close();
+        } catch (FileNotFoundException e) {
+            System.out.println("File tidak ditemukan.");
+        }
+        ret.row = rowcnt - 1;
+        ret.col = 2;
+        ret.mat = new double[rowcnt - 1][2];
+        try {
+            File file = new File("../test/input/" + fileName);
+            Scanner fReader = new Scanner(file);
+            int i = 0;
+            while (i < rowcnt - 1) {
+                String s = fReader.nextLine();
+                String[] temp = s.split(" ", 0);
+                for (int j = 0; j < 2; j++) {
+                    ret.mat[i][j] = Utils.toDouble(temp[j]);
+                }
+                i++;
+            }
+            String temp = fReader.nextLine();
+            // String[] temp = s.split(" ", 0);
+            x[0] = Utils.toDouble(temp);
+            fReader.close();
+        } catch (FileNotFoundException e) {
+            System.out.println(e.getMessage());
+        }
+        
+    }
+
+    // Mengubah matriks titik menjadi Augmented Matrix persamaan
+    public static Matrix fileToMatrix(Matrix inputMat) {
+        // Matrix inputMat = new Matrix();
+        // inputMat = Utils.readMatrixFromFile();
 
         Matrix res = new Matrix(inputMat.row, inputMat.row + 1);
 
@@ -100,7 +146,9 @@ public class InterpolasiApp {
         boolean inputValid = false;
         
         Matrix mat = new Matrix();
+        Matrix matPoint = new Matrix();
         double x = 0;
+        double[] taksir = new double[1];
 
         // Input Method
         try {
@@ -125,7 +173,7 @@ public class InterpolasiApp {
                     }
                     System.out.println("Masukkan pasangan titik: ");
                     mat = inputToMatrix(n);
-                    System.out.println("Masukkan nilai x yang ingin ditaksir nilai fungsinya: ");
+                    System.out.print("Masukkan nilai x yang ingin ditaksir nilai fungsinya: ");
                     
                     try {
                         x = in.nextDouble();
@@ -135,7 +183,9 @@ public class InterpolasiApp {
                     inputValid = true;
                     break;
                 case 2:
-                    mat = fileToMatrix();
+                    readFileInterpolasi(matPoint, taksir);
+                    mat = fileToMatrix(matPoint);
+                    x = taksir[0];
                     inputValid = true;
                     break;
                 default:
@@ -152,13 +202,10 @@ public class InterpolasiApp {
 
             String res = polinom;
 
-
-            if (method == 1) {
-                String taksiran = printTaksiran(ans, x);
-                System.out.println("Taksiran nilai fungsi dari nilai x yang dimasukkan yaitu: ");
-                System.out.println(taksiran);
-                res += "\n" + taksiran;
-            }
+            String taksiran = printTaksiran(ans, x);
+            System.out.println("Taksiran nilai fungsi dari nilai x yaitu: ");
+            System.out.println(taksiran);
+            res += "\n" + taksiran;
 
             Utils.stringToFile(res);
         }
