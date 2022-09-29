@@ -35,8 +35,6 @@ public class InterpolasiApp {
         System.out.print("Masukkan nama file: ");
         fileName = in.nextLine();
         int rowcnt = 0;
-        // int colcnt = 0;
-        // Matrix ret = new Matrix();
         try {
             File file = new File("../test/input/" + fileName);
             Scanner fReader = new Scanner(file);
@@ -65,7 +63,6 @@ public class InterpolasiApp {
                 i++;
             }
             String temp = fReader.nextLine();
-            // String[] temp = s.split(" ", 0);
             x[0] = Utils.toDouble(temp);
             fReader.close();
         } catch (FileNotFoundException e) {
@@ -76,9 +73,6 @@ public class InterpolasiApp {
 
     // Mengubah matriks titik menjadi Augmented Matrix persamaan
     public static Matrix fileToMatrix(Matrix inputMat) {
-        // Matrix inputMat = new Matrix();
-        // inputMat = Utils.readMatrixFromFile();
-
         Matrix res = new Matrix(inputMat.row, inputMat.row + 1);
 
         for (int i = 0; i < inputMat.row; i++) {
@@ -159,8 +153,7 @@ public class InterpolasiApp {
 
         // Perulangan hingga input user valis
         while (!inputValid) {
-            // Switch Case Method, menginisialisasi Augmented Matrix sesuai pilihan input
-            // user
+            // Switch Case Method, menginisialisasi Augmented Matrix sesuai pilihan input user
             switch (method) {
                 case 1:
                     System.out.println("Masukkan jumlah pasangan titik: ");
