@@ -13,74 +13,82 @@ public class SPL {
         m.eliminasiGauss();
 
         int p=0;    // label variabel parametrik
-        int[] param = new int[m.col];  // variabel parametrik
-        for (int i=0; i < m.col; i++){
+        int[] param = new int[m.col-1];  // variabel parametrik
+        for (int i=0; i < m.col-1; i++){
             param[i] = -1;   // variabel parametrik x_(i+1); label berdasarkan p, inisialisasi dengan -1
         }
         
-        double[][] subs = new double[m.row][m.col];
+        double[][] subs = new double[m.row][m.col];   // hasil substitusi subs[i][j] menunjukkan x_i mengandung konstanta tiap ekspresi
+        for(int i=0; i < m.row; i++){
+            for(int j=0; j < m.col; j++){
+                subs[i][j] = 0.000000;
+            }
+        }
 
         boolean noSolution = false;
         int r = m.row-1, c;
         while(r >= 0 && !noSolution){
             c = 0;
-            while(m.mat[r][c] == 0 && c < mat.col-1){
+            while(m.mat[r][c] == 0 && c < m.col-1){
                 c++;
             }
             // m.mat[r][c] == 0 ATAU c == m.col-1 (dicapai kolom terakhir / vektor kolom konstanta)
-            if(c == mat.col-1 && m.mat[r][c != 0]){
-                noSolution = true;
+            if(c == m.col-1){ // periksa jika SPL tidak memiliki solusi
+                noSolution = (m.mat[r][c] != 0);
             }
-            for(int i=c+1; i < m.col; i++){
-                
-            }
-        }
-
-        /*double ans;
-        boolean hasparam;
-        int r=0, c=0;
-        while(r < m.row && c < m.col-1){
-            if(m.mat[r][c] != 0){   // maju hingga terdapat elemen bukan 0 (leading 1) atau kolom terakhir
-                res += ("x_" + (c + 1) + " =");
+            else {
+                boolean hasparam = false;
+                String temp = new String();
+                String tempparam = new String();
+                double ans;
+                temp = ("x_" + (c + 1) + " =");
                 hasparam = false;
                 for(int i=c+1; i < m.col-1; i++){
                     if(m.mat[r][i] != 0){
                         if(param[i] == -1){
                             p++;
                             param[i] = p;
+                            tempparam = ("x_" + (i + 1) + " = t_" + (param[i]) + "\n") + tempparam;
                         }
-                        ans = Utils.setPrec((-m.mat[r][i]), 6);
+                        subs[r][i] -= m.mat[r][i];  // pindahkan ke ruas kanan persamaan
+                        ans = Utils.setPrec((subs[r][i]), 6);
                         if(ans < 0){
-                            res += (" - " + (-ans));
+                            temp += (" - " + (-ans));
                         } else {
-                            res += (" + " + (ans));
+                            temp += (" + " + (ans));
                         }
-                        res += ("*" + "t_" + (param[i]));
+                        temp += ("*" + "t_" + (param[i]));
 
                         hasparam = true;
                     }
                 }
-                // kolom terakhir, kolom vektor konstanta
-                ans = Utils.setPrec((0.000000 + m.mat[r][m.col-1]), 6);
+                // kolom terakhir (kolom vektor konstanta)
+                subs[r][m.col-1] += m.mat[r][m.col-1];
+                ans = Utils.setPrec((0.000000 + subs[r][m.col-1]), 6);
                 if(hasparam){
                     if(ans < 0){
-                            res += (" - " + (-ans));
+                            temp += (" - " + (-ans));
                     } else if(ans > 0) {
-                            res += (" + " + (ans));
+                            temp += (" + " + (ans));
                     }
                 } else {
-                    res += (" " + (ans));
+                    temp += (" " + (ans));
                 }
-                res += ("\n");
-                r++;    // lanjutkan ke baris berikutnya
-            } else if(param[c] != -1){
-                res += ("x_" + (c + 1) + " = t_" + (param[c]) + "\n");
+                temp += ("\n");
+                res = tempparam +res;
+                res = temp + res;
+                // SUBSTITUSI BALIK / BACKWARD SUBSTITUTION (INI BUKAN METODE GAUSS-JORDAN)
+                for(int i=r-1; i >= 0; i--){    // SUBSTITUSI BALIK / BACKWARD SUBSSTITUTION (INI BUKAN METODE GAUSS-JORDAN)
+                    // SUBSTITUSI BALIK / BACKWARD SUBSTITUTION (INI BUKAN METODE GAUSS-JORDAN)
+                    for(int j=c+1; j < m.col; j++){
+                        subs[i][j] += (-m.mat[i][c])*subs[r][j];    // substitusi, kemudian pindahkan ke ruas kanan
+                    }
+                    m.mat[i][c] = 0; // x_c telah selesai disubstitusi
+                }
             }
-            c++;
-        }*/
-        /* r == m.row (telah dilewati baris terakhir)
-        ATAU r == m.col-1 (dicapai kolom terakhir / vektor kolom konstanta) */
-        if (r < m.row && m.mat[r][c] != 0){
+            r--;
+        }
+        if (noSolution){
             res = "SPL tidak memiliki solusi.\n";
         }
         return res;
@@ -94,8 +102,8 @@ public class SPL {
         m.eliminasiGaussJordan();
 
         int p=0;    // label variabel parametrik
-        int[] param = new int[m.col];  // variabel parametrik
-        for (int i=0; i < m.col; i++){
+        int[] param = new int[m.col-1];  // variabel parametrik
+        for (int i=0; i < m.col-1; i++){
             param[i] = -1;   // variabel parametrik x_(i+1); label berdasarkan p, inisialisasi dengan -1
         }
         

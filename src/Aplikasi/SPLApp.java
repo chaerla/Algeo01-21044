@@ -90,6 +90,7 @@ public class SPLApp {
         if (inputValid) {
             if (m != null) {
                 System.out.print(res);
+                Utils.stringToFile(res);
             }
         }
 
