@@ -36,7 +36,7 @@ public class Matrix {
     public void displayMatrix() {
         for (int i = 0; i < this.row; i++) {
             for (int j = 0; j < this.col; j++) {
-                System.out.printf(String.format("%.4f", this.mat[i][j] + 0.00000000));
+                System.out.printf(String.format("%.4f", (Utils.setPrec(this.mat[i][j], 8))));
                 System.out.print(" ");
             }
             System.out.println("");
@@ -83,6 +83,7 @@ public class Matrix {
         this.row = row;
         this.col = col;
         this.mat = new double[row][col];
+        System.out.println("Masukkan matriks:");
         this.readMatrix();
     }
 
@@ -97,12 +98,12 @@ public class Matrix {
         this.row = n;
         this.col = n;
         this.mat = new double[this.row][this.col];
+        System.out.println("Masukkan matriks:");
         this.readMatrix();
     }
 
     // Prekondisi, row, col, dan matriks terdefinisi.
     public void readMatrix() {
-        System.out.println("Masukkan matriks:");
         for (int i = 0; i < this.row; i++) {
             String line = new String();
             try {
@@ -246,7 +247,7 @@ public class Matrix {
 
     // SPLIT MATRIKS
     // m1 dan m2 adalah hasil dari split matrix. colNum adalah jumlah kolom m1.
-    public void splitMatriks(Matrix m1, Matrix m2, int colNum) {
+    public void splitMatrix(Matrix m1, Matrix m2, int colNum) {
         m1.row = this.row;
         m2.row = this.row;
         m1.col = colNum;
@@ -316,7 +317,7 @@ public class Matrix {
         while (r < this.row && c < this.col) {
             if (this.mat[r][c] != 0) { // terdapat elemen bukan 0 dari kolom (pivot)
                 for (int i = r - 1; i >= 0; i--) { // penjumlahan baris untuk setiap baris sebelum r
-                    this.addRow(i, r, -this.mat[i][c]);
+                    this.addRow(i, r, -1 * this.mat[i][c]);
                 }
                 r++;
             }

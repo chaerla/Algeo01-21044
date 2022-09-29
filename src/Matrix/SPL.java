@@ -10,7 +10,7 @@ public class SPL {
         String res = new String();
         Matrix m1 = new Matrix();
         Matrix m2 = new Matrix();
-        m.splitMatriks(m1, m2, m.col - 1);
+        m.splitMatrix(m1, m2, m.col - 1);
         if (m.row != m.col - 1) {
             res = "SPL tidak bisa diselesaikan karena jumlah persamaan != jumlah variabel.\n";
             return res;
@@ -31,7 +31,7 @@ public class SPL {
             }
             ansArr[i] = ansArr[i] / m.mat[i][i];
         }
-        
+
         for (int i = 0; i < m.row; i++) {
             double ans = Utils.setPrec((ansArr[i]), 6);
             res += ("x-" + (i + 1) + " : " + (ans) + "\n");
@@ -45,7 +45,7 @@ public class SPL {
         String res = new String();
         Matrix m1 = new Matrix();
         Matrix m2 = new Matrix();
-        m.splitMatriks(m1, m2, m.col - 1);
+        m.splitMatrix(m1, m2, m.col - 1);
         if (m1.isSingular()) {
             res = "SPL memiliki banyak solusi atau tidak memiliki solusi. Silahkan gunakan metode lain. \n";
             return res;
@@ -73,7 +73,7 @@ public class SPL {
         } else {
             Matrix m1 = new Matrix();
             Matrix m2 = new Matrix();
-            m.splitMatriks(m1, m2, m.col - 2);
+            m.splitMatrix(m1, m2, m.col - 2);
             double det = Determinant.determinanEliminasiGauss(m);
             double[] detX = new double[m.row];
             Matrix temp = new Matrix();

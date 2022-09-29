@@ -98,8 +98,7 @@ public class InterpolasiApp {
     public static Matrix solusiMatrix(Matrix m) {
         Matrix m1 = new Matrix();
         Matrix m2 = new Matrix();
-        m.splitMatriks(m1, m2, m.col - 1);
-
+        m.splitMatrix(m1, m2, m.col - 1);
         m1 = Inverse.inversiGaussJordan(m1);
         Matrix ansMat = Matrix.multiplyMat(m1, m2);
 
@@ -109,7 +108,7 @@ public class InterpolasiApp {
     // Menghasilkan string polinom dari solusi yang diperoleh
     public static String printPolinom(Matrix m) {
         String res = "f(x) = ";
-        for (int i = m.row-1; i >= 0; i--) {
+        for (int i = m.row - 1; i >= 0; i--) {
             if (i == 0) {
                 res += (m.mat[i][0] <= 0 ? " " : " + ") + String.format("%.4f", m.mat[i][0]);
             } else if (i == 1) {
@@ -144,7 +143,7 @@ public class InterpolasiApp {
         System.out.print("Masukkan pilihan input: ");
         int method = 0;
         boolean inputValid = false;
-        
+
         Matrix mat = new Matrix();
         Matrix matPoint = new Matrix();
         double x = 0;
@@ -160,9 +159,9 @@ public class InterpolasiApp {
 
         // Perulangan hingga input user valis
         while (!inputValid) {
-            // Switch Case Method, menginisialisasi Augmented Matrix sesuai pilihan input user
-            switch (method) 
-            {
+            // Switch Case Method, menginisialisasi Augmented Matrix sesuai pilihan input
+            // user
+            switch (method) {
                 case 1:
                     System.out.println("Masukkan jumlah pasangan titik: ");
                     int n = 0;
@@ -193,9 +192,9 @@ public class InterpolasiApp {
             }
         }
 
-        if(inputValid) {
+        if (inputValid) {
             Matrix ans = solusiMatrix(mat);
-        
+
             String polinom = printPolinom(ans);
             System.out.println("Polinom yang melalui titik-titik tersebut yaitu: ");
             System.out.println(polinom);
@@ -209,7 +208,6 @@ public class InterpolasiApp {
 
             Utils.stringToFile(res);
         }
-        
-        
+
     }
 }
