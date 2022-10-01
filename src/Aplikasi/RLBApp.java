@@ -69,6 +69,15 @@ public class RLBApp {
                 }
                 i++;
             }
+            String s = fReader.nextLine();
+            String[] temp = s.split(" ", 0);
+            x.row = temp.length;
+            x.col = 1;
+            x.mat = new double[x.row][1];
+            i = 0;
+            for (int j = 0; j < temp.length; j++) {
+                x.mat[j][i] = Utils.setPrec(Utils.toDouble(temp[j]), 8);
+            }
             fReader.close();
         } catch (FileNotFoundException e) {
             System.out.println(e.getMessage());
@@ -111,22 +120,35 @@ public class RLBApp {
         }
     }
 
-    public static void output(Matrix m) {
+    public static void output(Matrix m, Matrix x) {
         String regresi = "";
+        double res = 0;
         boolean isFirst = true;
         for (int i = 0; i < m.row; i++) {
             if (Utils.setPrec(m.mat[i][i], 8) != 0) {
                 if (isFirst) {
-                    regresi += String.format("%.4f", m.mat[i][m.col - 1]) + "x" + (i + 1);
+                    regresi += String.format("%.4f", m.mat[i][m.col - 1]);
                     isFirst = false;
                 } else {
-                    regresi += " + " + String.format("%.4f", m.mat[i][m.col - 1]) + "x" + (i + 1);
+                    regresi += " + " + String.format("%.4f", m.mat[i][m.col - 1]);
+                }
+                if (i != 0) {
+                    regresi += "x" + (i);
+                    res += x.mat[i - 1][0] * m.mat[i][m.col - 1];
+                } else {
+                    res += m.mat[i][m.col - 1];
                 }
             }
         }
         System.out.println();
         System.out.print("f(x) = ");
         System.out.println(regresi);
+        String fx = "f(";
+        for (int i = 0; i < x.row; i++) {
+            fx += String.format(" %.2f ", x.mat[i][0]);
+        }
+        fx += ") = " + String.format("%.4f", res);
+        System.out.println(fx);
     }
 
     public static void menu() {
@@ -150,9 +172,11 @@ public class RLBApp {
         switch (method) {
             case 1:
                 readKey(inputMat, x);
+                x.displayMatrix();
                 break;
             case 2:
                 readFile(inputMat, x);
+                x.displayMatrix();
                 break;
             default:
                 inputValid = false;
@@ -160,7 +184,7 @@ public class RLBApp {
         }
         if (inputValid) {
             inputMat = solve(inputMat);
-            output(inputMat);
+            output(inputMat, x);
         }
     }
 }
