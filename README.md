@@ -5,42 +5,42 @@ This is a Java project which we named JAR Calculator (taken from our team's name
 ## File structure
 
 .
-├── README.md
-├── bin/
-│ ├── Aplikasi/
-│ │ ├── BicubicInterpolationApp.class
-│ │ ├── DeterminantApp.class
-│ │ ├── InterpolasiApp.class
-│ │ ├── InverseApp.class
-│ │ ├── RLBApp.class
-│ │ └── SPLApp.class
-│ ├── Matrix/
-│ │ ├── Determinant.class
-│ │ ├── Inverse.class
-│ │ ├── Matrix.class
-│ │ └── SPL.class
-│ ├── Utils/
-│ │ └── Utils.class
-│ └── Main.class
-├── src/
-│ ├── Aplikasi/
-│ │ ├── BicubicInterpolationApp.java
-│ │ ├── DeterminantApp.java
-│ │ ├── InterpolasiApp.java
-│ │ ├── InverseApp.java
-│ │ ├── RLBApp.java
-│ │ └── SPLApp.java
-│ ├── Matrix/
-│ │ ├── Determinant.java
-│ │ ├── Inverse.java
-│ │ ├── Matrix.java
-│ │ └── SPL.java
-│ ├── Utils/
-│ │ └── Utils.java
-│ └── Main.java
-└── test/
-├── input
-└── output
+├── README.md <br>
+├── bin/ <br>
+│ ├── Aplikasi/ <br>
+│ │ ├── BicubicInterpolationApp.class <br>
+│ │ ├── DeterminantApp.class <br>
+│ │ ├── InterpolasiApp.class <br>
+│ │ ├── InverseApp.class <br>
+│ │ ├── RLBApp.class <br>
+│ │ └── SPLApp.class <br>
+│ ├── Matrix/ <br>
+│ │ ├── Determinant.class <br>
+│ │ ├── Inverse.class <br>
+│ │ ├── Matrix.class <br>
+│ │ └── SPL.class <br>
+│ ├── Utils/ <br>
+│ │ └── Utils.class <br>
+│ └── Main.class <br>
+├── src/ <br>
+│ ├── Aplikasi/ <br>
+│ │ ├── BicubicInterpolationApp.java <br>
+│ │ ├── DeterminantApp.java <br>
+│ │ ├── InterpolasiApp.java <br>
+│ │ ├── InverseApp.java <br>
+│ │ ├── RLBApp.java <br>
+│ │ └── SPLApp.java <br>
+│ ├── Matrix/ <br>
+│ │ ├── Determinant.java <br>
+│ │ ├── Inverse.java <br>
+│ │ ├── Matrix.java <br>
+│ │ └── SPL.java <br>
+│ ├── Utils/ <br>
+│ │ └── Utils.java <br>
+│ └── Main.java <br>
+└── test/ <br>
+├── input <br>
+└── output <br>
 
 ## How to run
 
