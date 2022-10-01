@@ -5,6 +5,9 @@ public class Main {
         private static Scanner in = new Scanner(System.in);
 
         public static void main(String[] args) throws Exception {
+                System.out.println("*************************************************************************");
+                System.out.println();
+                System.out.println("                            JAR CALCULATOR");
                 int choice = -1;
                 while (choice != 7) {
                         System.out.println();
@@ -42,11 +45,11 @@ public class Main {
                                         break;
                                 case 6:
                                         RLBApp.menu();
-                                        // RLB
+                                        break;
                                 case 7:
                                         System.out.println(
                                                         "*************************************************************************");
-                                        System.out.println("Terima kasih telah menggunakan ");
+                                        System.out.println("                Terima kasih telah menggunakan ");
                                         System.out.println(
                                                         "*************************************************************************");
                                         break;

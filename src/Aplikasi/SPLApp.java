@@ -1,7 +1,6 @@
 package Aplikasi;
 
 import Matrix.*;
-import java.io.*;
 import java.util.*;
 import Utils.*;
 
@@ -17,7 +16,7 @@ public class SPLApp {
         boolean isValid = false;
         boolean isFromFile = false;
         // if (fromFile == 1) {
-        //     return false;
+        // return false;
         // }
         // return true;
         while (!isValid) {
@@ -38,10 +37,11 @@ public class SPLApp {
                     break;
                 default:
                     System.out.println("Input tidak dikenali. Mohon hanya masukkan 1 atau 2.\n");
+                    break;
             }
         }
         return isFromFile;
-        
+
     }
 
     public static void menu() {
@@ -63,12 +63,12 @@ public class SPLApp {
         }
         Matrix m = new Matrix();
         String res = new String();
-        if (1 <= method && method <= 4){
+        if (1 <= method && method <= 4) {
             if (fromFile()) {
-                    m = Utils.readMatrixFromFile();
-                } else {
-                    m.inputMatrix();
-                }
+                m = Utils.readMatrixFromFile();
+            } else {
+                m.inputMatrix();
+            }
         }
         switch (method) {
             case 1:
@@ -86,6 +86,7 @@ public class SPLApp {
             default:
                 inputValid = false;
                 System.out.println("Input tidak dikenali. Mohon hanya masukkan bilangan bulat 1 hingga 4.\n");
+                break;
         }
         if (inputValid) {
             if (m != null) {
