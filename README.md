@@ -4,43 +4,43 @@ This is a Java project which we named JAR Calculator (taken from our team's name
 
 ## File structure
 
-.
-├── README.md  <br>
+. <br>
+├── README.md <br>
 ├── bin/ <br>
-│   ├── Aplikasi/ <br>
-│   │   ├── BicubicInterpolationApp.class <br>
-│   │   ├── DeterminantApp.class <br>
-│   │   ├── InterpolasiApp.class <br>
-│   │   ├── InverseApp.class <br>
-│   │   ├── RLBApp.class <br>
-│   │   └── SPLApp.class <br>
-│   ├── Matrix/ <br>
-│   │   ├── Determinant.class <br>
-│   │   ├── Inverse.class <br>
-│   │   ├── Matrix.class <br>
-│   │   └── SPL.class <br>
-│   ├── Utils/ <br>
-│   │   └── Utils.class <br>
-│   └── Main.class <br>
+│ ├── Aplikasi/ <br>
+│ │ ├── BicubicInterpolationApp.class <br>
+│ │ ├── DeterminantApp.class <br>
+│ │ ├── InterpolasiApp.class <br>
+│ │ ├── InverseApp.class <br>
+│ │ ├── RLBApp.class <br>
+│ │ └── SPLApp.class <br>
+│ ├── Matrix/ <br>
+│ │ ├── Determinant.class <br>
+│ │ ├── Inverse.class <br>
+│ │ ├── Matrix.class <br>
+│ │ └── SPL.class <br>
+│ ├── Utils/ <br>
+│ │ └── Utils.class <br>
+│ └── Main.class <br>
 ├── src/ <br>
-│   ├── Aplikasi/ <br>
-│   │   ├── BicubicInterpolationApp.java <br>
-│   │   ├── DeterminantApp.java <br>
-│   │   ├── InterpolasiApp.java <br>
-│   │   ├── InverseApp.java <br>
-│   │   ├── RLBApp.java <br>
-│   │   └── SPLApp.java <br>
-│   ├── Matrix/ <br>
-│   │   ├── Determinant.java <br>
-│   │   ├── Inverse.java <br>
-│   │   ├── Matrix.java <br>
-│   │   └── SPL.java <br>
-│   ├── Utils/ <br>
-│   │   └── Utils.java <br>
-│   └── Main.java <br>
+│ ├── Aplikasi/ <br>
+│ │ ├── BicubicInterpolationApp.java <br>
+│ │ ├── DeterminantApp.java <br>
+│ │ ├── InterpolasiApp.java <br>
+│ │ ├── InverseApp.java <br>
+│ │ ├── RLBApp.java <br>
+│ │ └── SPLApp.java <br>
+│ ├── Matrix/ <br>
+│ │ ├── Determinant.java <br>
+│ │ ├── Inverse.java <br>
+│ │ ├── Matrix.java <br>
+│ │ └── SPL.java <br>
+│ ├── Utils/ <br>
+│ │ └── Utils.java <br>
+│ └── Main.java <br>
 └── test/ <br>
-    ├── input <br>
-    └── output <br>
+├── input <br>
+└── output <br>
 
 ## How to run
 
