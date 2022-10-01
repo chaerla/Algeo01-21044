@@ -16,10 +16,6 @@ public class DeterminantApp {
         int opt = 0;
         boolean isValid = false;
         boolean isFromFile = false;
-        // if (fromFile == 1) {
-        //     return false;
-        // }
-        // return true;
         while (!isValid) {
             System.out.print("Masukkan pilihan input (1/2): ");
             try {
@@ -88,12 +84,10 @@ public class DeterminantApp {
                 System.out.println("Input tidak dikenali. Mohon hanya masukkan 1 atau 2.\n");
         }
         if (inputValid) {
-            if (m != null) {
-                System.out.println();
-                System.out.print("Determinan: ");
-                System.out.printf("%.4f", det);
-                Utils.stringToFile(String.format("%.4f", det));
-            } 
+            System.out.println();
+            System.out.print("Determinan: ");
+            System.out.printf("%.4f", det);
+            Utils.stringToFile(String.format("%.4f", det));
         }
     }
 }

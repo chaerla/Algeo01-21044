@@ -91,12 +91,7 @@ public class InterpolasiApp {
 
     // Menyimpan solusi Augmented Matrix dalam bentuk Matrix
     public static Matrix solusiMatrix(Matrix m) {
-        // Matrix m1 = new Matrix();
-        // Matrix m2 = new Matrix();
-        // m.splitMatrix(m1, m2, m.col - 1);
-        // m1 = Inverse.inversiGaussJordan(m1);
         m.eliminasiGaussJordan();
-
         return m;
     }
 
@@ -104,16 +99,18 @@ public class InterpolasiApp {
     public static String printPolinom(Matrix m) {
         String res = "f(x) = ";
         for (int i = m.row - 1; i >= 0; i--) {
-            String negative = String.format("%.4f", -m.mat[i][m.col - 1]);
-            String positive = String.format("%.4f", m.mat[i][m.col - 1]);
-            if (i == 0) {
-                res += (m.mat[i][m.col - 1] <= 0 ? " - " + negative : " + " + positive);
-            } else if (i == 1) {
-                res += (m.mat[i][m.col - 1] <= 0 ? " - " + negative : " + " + positive) + "x";
-            } else if (i == m.row - 1) {
-                res += (m.mat[i][m.col - 1] <= 0 ? " - " + negative : " " + positive) + "x^" + i;
-            } else {
-                res += (m.mat[i][m.col - 1] <= 0 ? " - " + negative : " + " + positive) + "x^" + i;
+            if (Utils.setPrec(m.mat[i][m.col-1], 4) != 0.0000) {
+                String negative = String.format("%.4f", -m.mat[i][m.col - 1]);
+                String positive = String.format("%.4f", m.mat[i][m.col - 1]);
+                if (i == 0) {
+                    res += (m.mat[i][m.col - 1] <= 0 ? " - " + negative : " + " + positive);
+                } else if (i == 1) {
+                    res += (m.mat[i][m.col - 1] <= 0 ? " - " + negative : " + " + positive) + "x";
+                } else if (i == m.row - 1) {
+                    res += (m.mat[i][m.col - 1] <= 0 ? " - " + negative : " " + positive) + "x^" + i;
+                } else {
+                    res += (m.mat[i][m.col - 1] <= 0 ? " - " + negative : " + " + positive) + "x^" + i;
+                }
             }
         }
         return res;
@@ -158,8 +155,7 @@ public class InterpolasiApp {
 
         // Perulangan hingga input user valis
         while (!inputValid) {
-            // Switch Case Method, menginisialisasi Augmented Matrix sesuai pilihan input
-            // user
+            // Switch Case Method, menginisialisasi Augmented Matrix sesuai pilihan input user
             switch (method) {
                 case 1:
                     System.out.print("Masukkan jumlah pasangan titik: ");
