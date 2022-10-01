@@ -43,38 +43,40 @@ public class SPL {
                 double ans;
                 temp = ("x_" + (c + 1) + " =");
                 for (int i = c + 1; i < m.col - 1; i++) {
-                    if (m.mat[r][i] != 0) {
+                    if ((m.mat[r][i]) != 0) {
                         if (param[i] == -1) {
                             p++;
                             param[i] = p;
                             tempparam = ("x_" + (i + 1) + " = t_" + (param[i]) + "\n") + tempparam;
                         }
                         subs[r][i] -= m.mat[r][i]; // pindahkan ke ruas kanan persamaan
-                        ans = Utils.setPrec((subs[r][i]), 6);
-                        if (isfirst) {
-                            if (ans == -1.000000) {
-                                temp += " -";
-                            } else if (ans == 1.000000) {
-                                temp += " ";
-                            } else {
-                                temp += (" " + (ans) + "*");
-                            }
-                            isfirst = false;
-                        } else {
-                            if (ans < 0) {
-                                temp += (" - ");
-                                if (ans != -1.000000) {
-                                    temp += (-ans) + "*";
+                        if (subs[r][i] != 0) {
+                            ans = Utils.setPrec((subs[r][i]), 6);
+                            if (isfirst) {
+                                if (ans == -1.000000) {
+                                    temp += " -";
+                                } else if (ans == 1.000000) {
+                                    temp += " ";
+                                } else {
+                                    temp += (" " + (ans) + "*");
                                 }
+                                isfirst = false;
                             } else {
-                                temp += (" + ");
-                                if (ans != 1.000000) {
-                                    temp += (ans) + "*";
+                                if (ans < 0) {
+                                    temp += (" - ");
+                                    if (ans != -1.000000) {
+                                        temp += (-ans) + "*";
+                                    }
+                                } else {
+                                    temp += (" + ");
+                                    if (ans != 1.000000) {
+                                        temp += (ans) + "*";
+                                    }
                                 }
                             }
+                            temp += ("t_" + (param[i]));
+                            hasparam = true;
                         }
-                        temp += ("t_" + (param[i]));
-                        hasparam = true;
                     }
                 }
                 // kolom terakhir (kolom vektor konstanta)
@@ -185,16 +187,32 @@ public class SPL {
         Matrix m1 = new Matrix();
         Matrix m2 = new Matrix();
         m.splitMatrix(m1, m2, m.col - 1);
-        if (m1.isSingular() || !m1.isSquare()) { // matriks tidak memiliki invers, tidak ada solusi unik
-            res = "SPL memiliki banyak solusi atau tidak memiliki solusi. Silakan gunakan metode lain.\n";
-        } else {
-            m1 = Inverse.inversiGaussJordan(m1);
-            Matrix ansMat = Matrix.multiplyMat(m1, m2);
-            for (int i = 0; i < ansMat.row; i++) {
-                double ans = Utils.setPrec((0.000000 + ansMat.mat[i][0]), 6);
-                res += ("x_" + (i + 1) + " = " + String.format("%.2f", ans) + "\n");
+        if (m1.isSquare()) {
+            if (m1.isSingular()) {
+                res = "SPL memiliki banyak solusi atau tidak memiliki solusi. Silakan gunakan metode lain.\n";
+            } else {
+                m1 = Inverse.inversiGaussJordan(m1);
+                Matrix ansMat = Matrix.multiplyMat(m1, m2);
+                for (int i = 0; i < ansMat.row; i++) {
+                    double ans = Utils.setPrec((0.000000 + ansMat.mat[i][0]), 6);
+                    res += ("x_" + (i + 1) + " = " + String.format("%.2f", ans) + "\n");
+                }
             }
+        } else {
+            res = "SPL tidak bisa diselesaikan dengan metode invers. Silakan gunakan metode lain.\n";
         }
+        // if (m1.isSingular() || !m1.isSquare()) { // matriks tidak memiliki invers,
+        // tidak ada solusi unik
+        // res = "SPL memiliki banyak solusi atau tidak memiliki solusi. Silakan gunakan
+        // metode lain.\n";
+        // } else {
+        // m1 = Inverse.inversiGaussJordan(m1);
+        // Matrix ansMat = Matrix.multiplyMat(m1, m2);
+        // for (int i = 0; i < ansMat.row; i++) {
+        // double ans = Utils.setPrec((0.000000 + ansMat.mat[i][0]), 6);
+        // res += ("x_" + (i + 1) + " = " + String.format("%.2f", ans) + "\n");
+        // }
+        // }
         return res;
     }
 
@@ -204,24 +222,50 @@ public class SPL {
         Matrix m1 = new Matrix();
         Matrix m2 = new Matrix();
         m.splitMatrix(m1, m2, m.col - 1);
-        if (m1.isSingular() || !m1.isSquare()) { // matriks tidak memiliki invers, tidak ada solusi unik
-            res = "SPL memiliki banyak solusi atau tidak memiliki solusi. Silakan gunakan metode lain.\n";
-        } else {
-            double det = Determinant.determinanKofaktor(m1);
-            double[] valX = new double[m.row];
-            Matrix temp = new Matrix();
-            for (int i = 0; i < m1.col; i++) {
-                temp.copyMatrix(m1);
-                for (int j = 0; j < m1.row; j++) { // temp <- masukkan kolom ke i matriks persamaan dengan matriks hasil
-                    temp.mat[j][i] = m2.mat[j][0];
+        if (m1.isSquare()) {
+            if (m1.isSingular()) {
+                res = "SPL memiliki banyak solusi atau tidak memiliki solusi. Silakan gunakan metode lain.\n";
+            } else {
+                double det = Determinant.determinanKofaktor(m1);
+                double[] valX = new double[m.row];
+                Matrix temp = new Matrix();
+                for (int i = 0; i < m1.col; i++) {
+                    temp.copyMatrix(m1);
+                    for (int j = 0; j < m1.row; j++) { // temp <- masukkan kolom ke i matriks persamaan dengan matriks
+                                                       // hasil
+                        temp.mat[j][i] = m2.mat[j][0];
+                    }
+                    valX[i] = Determinant.determinanKofaktor(temp) / det; // hitung nilai xi
                 }
-                valX[i] = Determinant.determinanKofaktor(temp) / det; // hitung nilai xi
+                for (int i = 0; i < m.row; i++) {
+                    double ans = Utils.setPrec((0.000000 + valX[i]), 6);
+                    res += ("x_" + (i + 1) + " = " + String.format("%.2f", ans) + "\n");
+                }
             }
-            for (int i = 0; i < m.row; i++) {
-                double ans = Utils.setPrec((0.000000 + valX[i]), 6);
-                res += ("x_" + (i + 1) + " = " + String.format("%.2f", ans) + "\n");
-            }
+        } else {
+            res = "SPL tidak bisa diselesaikan dengan kaidah Cramer. Silakan gunakan metode lain.\n";
         }
+        // if (m1.isSingular() || !m1.isSquare()) { // matriks tidak memiliki invers,
+        // tidak ada solusi unik
+        // res = "SPL memiliki banyak solusi atau tidak memiliki solusi. Silakan gunakan
+        // metode lain.\n";
+        // } else {
+        // double det = Determinant.determinanKofaktor(m1);
+        // double[] valX = new double[m.row];
+        // Matrix temp = new Matrix();
+        // for (int i = 0; i < m1.col; i++) {
+        // temp.copyMatrix(m1);
+        // for (int j = 0; j < m1.row; j++) { // temp <- masukkan kolom ke i matriks
+        // persamaan dengan matriks hasil
+        // temp.mat[j][i] = m2.mat[j][0];
+        // }
+        // valX[i] = Determinant.determinanKofaktor(temp) / det; // hitung nilai xi
+        // }
+        // for (int i = 0; i < m.row; i++) {
+        // double ans = Utils.setPrec((0.000000 + valX[i]), 6);
+        // res += ("x_" + (i + 1) + " = " + String.format("%.2f", ans) + "\n");
+        // }
+        // }
         return res;
     }
 }
