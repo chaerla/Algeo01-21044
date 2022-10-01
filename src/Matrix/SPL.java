@@ -139,16 +139,28 @@ public class SPL {
                         }
                         ans = Utils.setPrec((-m.mat[r][i]), 6);
                         if (isfirst) {
-                            res += (" " + (ans));
+                            if (ans == -1.000000) {
+                                    res += " -";
+                                } else if (ans == 1.000000) {
+                                    res += " ";
+                                } else {
+                                    res += (" " + (ans) + "*");
+                                }
                             isfirst = false;
                         } else {
                             if (ans < 0) {
-                                res += (" - " + (-ans));
-                            } else {
-                                res += (" + " + (ans));
-                            }
+                                    res += (" - ");
+                                    if (ans != -1.000000) {
+                                        res += (-ans) + "*";
+                                    }
+                                } else {
+                                    res += (" + ");
+                                    if (ans != 1.000000) {
+                                        res += (ans) + "*";
+                                    }
+                                }
                         }
-                        res += ("*" + "t_" + (param[i]));
+                        res += ("t_" + (param[i]));
 
                         hasparam = true;
                     }
