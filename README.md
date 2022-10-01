@@ -1,31 +1,55 @@
-## YANG UDAH JADI
+# Tubes Algeo01-21044
 
-- `library` : disini udah ada ADT Matriks, Determinan Eliminasi Gauss, Cramer, Inverse Gauss Jordan, Inverse Kofaktor
-- `Utils`   : disini udah ada utils buat IO file, sama doubleToInt
+This is a Java project which we named JAR Calculator (taken from our team's name) to solve multiple problems that involves matrix operations. This program can help its user to solve Linear Equation System using different methods, determine the determinant and inverse of a matrix, do polynomial interpolation, bicubic interpolation, and multiple linear regression.
 
-## YANG PERLU DIKERJAIN
-- `library SPL` : ini gw mikir keknya solver SPL juga masukin ke SPL.java (jadi di library udah bisa nemu x1, x2, dst.), jadi nanti solver SPL pakai gaussJordan dll masukin ke sini aja
-- `Aplikasi` : 
-    1. Menu
-    2. SPL (ada menu pilihan metode, pilihan file/keyboard, input matriks, output hasil)
-    3. Determinan (sama kayak SPL)
-    4. Invers (sama kayak SPL)
-    5. Interpolasi 
-    6. Bikubik
-    7. RLB
-- `Utils`   : katanya harus setPrecision karena kalo ga, java suka random
+## File structure
 
-## Folder Structure
+. <br>
+├── README.md <br>
+├── bin/ <br>
+│&nbsp; &nbsp; &nbsp;├── Aplikasi/ <br>
+│&nbsp; &nbsp; &nbsp;│&nbsp; &nbsp; &nbsp;├── BicubicInterpolationApp.class <br>
+│&nbsp; &nbsp; &nbsp;│&nbsp; &nbsp; &nbsp;├── DeterminantApp.class <br>
+│&nbsp; &nbsp; &nbsp;│&nbsp; &nbsp; &nbsp;├── InterpolasiApp.class <br>
+│&nbsp; &nbsp; &nbsp;│&nbsp; &nbsp; &nbsp;├── InverseApp.class <br>
+│&nbsp; &nbsp; &nbsp;│&nbsp; &nbsp; &nbsp;├── RLBApp.class <br>
+│&nbsp; &nbsp; &nbsp;│&nbsp; &nbsp; &nbsp;└── SPLApp.class <br>
+│&nbsp; &nbsp; &nbsp;├── Matrix/ <br>
+│&nbsp; &nbsp; &nbsp;│&nbsp; &nbsp; &nbsp;├── Determinant.class <br>
+│&nbsp; &nbsp; &nbsp;│&nbsp; &nbsp; &nbsp;├── Inverse.class <br>
+│&nbsp; &nbsp; &nbsp;│&nbsp; &nbsp; &nbsp;├── Matrix.class <br>
+│&nbsp; &nbsp; &nbsp;│&nbsp; &nbsp; &nbsp;└── SPL.class <br>
+│&nbsp; &nbsp; &nbsp;├── Utils/ <br>
+│&nbsp; &nbsp; &nbsp;│&nbsp; &nbsp; &nbsp;└── Utils.class <br>
+│&nbsp; &nbsp; &nbsp;└── Main.class <br>
+├── src/ <br>
+│&nbsp; &nbsp; &nbsp;├── Aplikasi/ <br>
+│&nbsp; &nbsp; &nbsp;│&nbsp; &nbsp; &nbsp;├── BicubicInterpolationApp.java <br>
+│&nbsp; &nbsp; &nbsp;│&nbsp; &nbsp; &nbsp;├── DeterminantApp.java <br>
+│&nbsp; &nbsp; &nbsp;│&nbsp; &nbsp; &nbsp;├── InterpolasiApp.java <br>
+│&nbsp; &nbsp; &nbsp;│&nbsp; &nbsp; &nbsp;├── InverseApp.java <br>
+│&nbsp; &nbsp; &nbsp;│&nbsp; &nbsp; &nbsp;├── RLBApp.java <br>
+│&nbsp; &nbsp; &nbsp;│&nbsp; &nbsp; &nbsp;└── SPLApp.java <br>
+│&nbsp; &nbsp; &nbsp;├── Matrix/ <br>
+│&nbsp; &nbsp; &nbsp;│&nbsp; &nbsp; &nbsp;├── Determinant.java <br>
+│&nbsp; &nbsp; &nbsp;│&nbsp; &nbsp; &nbsp;├── Inverse.java <br>
+│&nbsp; &nbsp; &nbsp;│&nbsp; &nbsp; &nbsp;├── Matrix.java <br>
+│&nbsp; &nbsp; &nbsp;│&nbsp; &nbsp; &nbsp;└── SPL.java <br>
+│&nbsp; &nbsp; &nbsp;├── Utils/ <br>
+│&nbsp; &nbsp; &nbsp;│&nbsp; &nbsp; &nbsp;└── Utils.java <br>
+│&nbsp; &nbsp; &nbsp;└── Main.java <br>
+└── test/ <br>
+├── input <br>
+└── output <br>
 
-The workspace contains two folders by default, where:
+## How to run
 
-- `src`: the folder to maintain sources
-- `lib`: the folder to maintain dependencies
+Clone this repo https://github.com/chaerla/Algeo01-21044.git
 
-Meanwhile, the compiled output files will be generated in the `bin` folder by default.
+### Using .class
 
-> If you want to customize the folder structure, open `.vscode/settings.json` and update the related settings there.
+1. Go to folder bin `cd bin`
+2. Open in terminal
+3. Run Main.class `java Main`
 
-## Dependency Management
-
-The `JAVA PROJECTS` view allows you to manage your dependencies. More details can be found [here](https://github.com/microsoft/vscode-java-dependency#manage-dependencies).
+### Using .jar
