@@ -175,6 +175,11 @@ public class SPL {
          * r == m.row (telah dilewati baris terakhir)
          * ATAU c == m.col-1 (dicapai kolom terakhir / vektor kolom konstanta)
          */
+        for(int i=c; i < m.col-1; i++){ // print sisa parameter
+            if(param[i] != -1){
+                res += ("x_" + (i + 1) + " = t_" + (param[i]) + "\n");
+            }
+        }
         if (r < m.row && m.mat[r][c] != 0) {
             res = "SPL tidak memiliki solusi.\n";
         }
