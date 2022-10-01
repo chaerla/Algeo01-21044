@@ -28,7 +28,8 @@ public class InterpolasiApp {
         return res;
     }
 
-    // Membaca file dan menghasilkan ret sebagai matriks titik, x sebagai array nilai yang ditaksir
+    // Membaca file dan menghasilkan ret sebagai matriks titik, x sebagai array
+    // nilai yang ditaksir
     public static void readFileInterpolasi(Matrix ret, double[] x) {
         String fileName = new String();
         in.nextLine();
@@ -68,7 +69,7 @@ public class InterpolasiApp {
         } catch (FileNotFoundException e) {
             System.out.println(e.getMessage());
         }
-        
+
     }
 
     // Mengubah matriks titik menjadi Augmented Matrix persamaan
@@ -90,29 +91,29 @@ public class InterpolasiApp {
 
     // Menyimpan solusi Augmented Matrix dalam bentuk Matrix
     public static Matrix solusiMatrix(Matrix m) {
-        Matrix m1 = new Matrix();
-        Matrix m2 = new Matrix();
-        m.splitMatrix(m1, m2, m.col - 1);
-        m1 = Inverse.inversiGaussJordan(m1);
-        Matrix ansMat = Matrix.multiplyMat(m1, m2);
+        // Matrix m1 = new Matrix();
+        // Matrix m2 = new Matrix();
+        // m.splitMatrix(m1, m2, m.col - 1);
+        // m1 = Inverse.inversiGaussJordan(m1);
+        m.eliminasiGaussJordan();
 
-        return ansMat;
+        return m;
     }
 
     // Menghasilkan string polinom dari solusi yang diperoleh
     public static String printPolinom(Matrix m) {
         String res = "f(x) = ";
         for (int i = m.row - 1; i >= 0; i--) {
-            String negative = String.format("%.4f", -m.mat[i][0]);
-            String positive = String.format("%.4f", m.mat[i][0]);
+            String negative = String.format("%.4f", -m.mat[i][m.col - 1]);
+            String positive = String.format("%.4f", m.mat[i][m.col - 1]);
             if (i == 0) {
-                res += (m.mat[i][0] <= 0 ? " - " + negative : " + " + positive);
+                res += (m.mat[i][m.col - 1] <= 0 ? " - " + negative : " + " + positive);
             } else if (i == 1) {
-                res += (m.mat[i][0] <= 0 ? " - " + negative : " + " + positive) + "x";
-            } else  if (i == m.row - 1) {
-                res += (m.mat[i][0] <= 0 ? " - " + negative : " " + positive) + "x^" + i;
+                res += (m.mat[i][m.col - 1] <= 0 ? " - " + negative : " + " + positive) + "x";
+            } else if (i == m.row - 1) {
+                res += (m.mat[i][m.col - 1] <= 0 ? " - " + negative : " " + positive) + "x^" + i;
             } else {
-                res += (m.mat[i][0] <= 0 ? " " + negative : " + " + positive) + "x^" + i;
+                res += (m.mat[i][m.col - 1] <= 0 ? " - " + negative : " + " + positive) + "x^" + i;
             }
         }
         return res;
@@ -124,7 +125,7 @@ public class InterpolasiApp {
         String res = "f(" + x + ") = ";
 
         for (int i = 0; i < m.row; i++) {
-            taksiran += m.mat[i][0] * Math.pow(x, i);
+            taksiran += m.mat[i][m.col - 1] * Math.pow(x, i);
         }
 
         res += String.format("%.4f", taksiran);
@@ -157,7 +158,8 @@ public class InterpolasiApp {
 
         // Perulangan hingga input user valis
         while (!inputValid) {
-            // Switch Case Method, menginisialisasi Augmented Matrix sesuai pilihan input user
+            // Switch Case Method, menginisialisasi Augmented Matrix sesuai pilihan input
+            // user
             switch (method) {
                 case 1:
                     System.out.print("Masukkan jumlah pasangan titik: ");
@@ -170,7 +172,7 @@ public class InterpolasiApp {
                     System.out.println("Masukkan pasangan titik: ");
                     mat = inputToMatrix(n);
                     System.out.print("Masukkan nilai x yang ingin ditaksir nilai fungsinya: ");
-                    
+
                     try {
                         x = in.nextDouble();
                     } catch (Exception e) {
