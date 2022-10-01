@@ -175,11 +175,9 @@ public class RLBApp {
         switch (method) {
             case 1:
                 readKey(inputMat, x);
-                x.displayMatrix();
                 break;
             case 2:
                 readFile(inputMat, x);
-                x.displayMatrix();
                 break;
             default:
                 inputValid = false;
