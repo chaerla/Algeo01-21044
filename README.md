@@ -7,40 +7,40 @@ This is a Java project which we named JAR Calculator (taken from our team's name
 .
 ├── README.md
 ├── bin/
-│ ├── Aplikasi/
-│ │ ├── BicubicInterpolationApp.class
-│ │ ├── DeterminantApp.class
-│ │ ├── InterpolasiApp.class
-│ │ ├── InverseApp.class
-│ │ ├── RLBApp.class
-│ │ └── SPLApp.class
-│ ├── Matrix/
-│ │ ├── Determinant.class
-│ │ ├── Inverse.class
-│ │ ├── Matrix.class
-│ │ └── SPL.class
-│ ├── Utils/
-│ │ └── Utils.class
-│ └── Main.class
+│   ├── Aplikasi/
+│   │   ├── BicubicInterpolationApp.class
+│   │   ├── DeterminantApp.class
+│   │   ├── InterpolasiApp.class
+│   │   ├── InverseApp.class
+│   │   ├── RLBApp.class
+│   │   └── SPLApp.class
+│   ├── Matrix/
+│   │   ├── Determinant.class
+│   │   ├── Inverse.class
+│   │   ├── Matrix.class
+│   │   └── SPL.class
+│   ├── Utils/
+│   │   └── Utils.class
+│   └── Main.class
 ├── src/
-│ ├── Aplikasi/
-│ │ ├── BicubicInterpolationApp.java
-│ │ ├── DeterminantApp.java
-│ │ ├── InterpolasiApp.java
-│ │ ├── InverseApp.java
-│ │ ├── RLBApp.java
-│ │ └── SPLApp.java
-│ ├── Matrix/
-│ │ ├── Determinant.java
-│ │ ├── Inverse.java
-│ │ ├── Matrix.java
-│ │ └── SPL.java
-│ ├── Utils/
-│ │ └── Utils.java
-│ └── Main.java
+│   ├── Aplikasi/
+│   │   ├── BicubicInterpolationApp.java
+│   │   ├── DeterminantApp.java
+│   │   ├── InterpolasiApp.java
+│   │   ├── InverseApp.java
+│   │   ├── RLBApp.java
+│   │   └── SPLApp.java
+│   ├── Matrix/
+│   │   ├── Determinant.java
+│   │   ├── Inverse.java
+│   │   ├── Matrix.java
+│   │   └── SPL.java
+│   ├── Utils/
+│   │   └── Utils.java
+│   └── Main.java
 └── test/
-├── input
-└── output
+    ├── input
+    └── output
 
 ## How to run
 
