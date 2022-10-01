@@ -103,12 +103,16 @@ public class InterpolasiApp {
     public static String printPolinom(Matrix m) {
         String res = "f(x) = ";
         for (int i = m.row - 1; i >= 0; i--) {
+            String negative = String.format("%.4f", -m.mat[i][0]);
+            String positive = String.format("%.4f", m.mat[i][0]);
             if (i == 0) {
-                res += (m.mat[i][0] <= 0 ? " " : " + ") + String.format("%.4f", m.mat[i][0]);
+                res += (m.mat[i][0] <= 0 ? " - " + negative : " + " + positive);
             } else if (i == 1) {
-                res += (m.mat[i][0] <= 0 ? " " : " + ") + String.format("%.4f", m.mat[i][0]) + "x";
+                res += (m.mat[i][0] <= 0 ? " - " + negative : " + " + positive) + "x";
+            } else  if (i == m.row - 1) {
+                res += (m.mat[i][0] <= 0 ? " - " + negative : " " + positive) + "x^" + i;
             } else {
-                res += (m.mat[i][0] <= 0 ? " " : " + ") + String.format("%.4f", m.mat[i][0]) + "x^" + i;
+                res += (m.mat[i][0] <= 0 ? " " + negative : " + " + positive) + "x^" + i;
             }
         }
         return res;
@@ -156,7 +160,7 @@ public class InterpolasiApp {
             // Switch Case Method, menginisialisasi Augmented Matrix sesuai pilihan input user
             switch (method) {
                 case 1:
-                    System.out.println("Masukkan jumlah pasangan titik: ");
+                    System.out.print("Masukkan jumlah pasangan titik: ");
                     int n = 0;
                     try {
                         n = in.nextInt();
@@ -189,6 +193,7 @@ public class InterpolasiApp {
             Matrix ans = solusiMatrix(mat);
 
             String polinom = printPolinom(ans);
+            System.out.println();
             System.out.println("Polinom yang melalui titik-titik tersebut yaitu: ");
             System.out.println(polinom);
 
