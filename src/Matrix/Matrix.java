@@ -113,7 +113,7 @@ public class Matrix {
             }
             String[] elmt = line.split(" ", 0);
             for (int j = 0; j < this.col; j++) {
-                this.mat[i][j] = Utils.setPrec(Utils.toDouble(elmt[j]), 8);
+                this.mat[i][j] = Utils.toDouble(elmt[j]);
             }
         }
 

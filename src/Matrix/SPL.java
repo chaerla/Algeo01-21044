@@ -11,7 +11,6 @@ public class SPL {
         // Matrix mx = mx.copyMatrix(m);
 
         m.eliminasiGauss();
-
         int p = 0; // label variabel parametrik
         int[] param = new int[m.col - 1]; // variabel parametrik
         for (int i = 0; i < m.col - 1; i++) {
@@ -88,7 +87,7 @@ public class SPL {
                         temp += (" + " + (ans));
                     }
                 } else {
-                    temp += (" " + (ans));
+                    temp += (" " + String.format("%.2f", ans));
                 }
                 temp += ("\n");
                 res = tempparam + res;
@@ -131,7 +130,7 @@ public class SPL {
                 boolean hasparam = false, isfirst = true;
                 res += ("x_" + (c + 1) + " =");
                 for (int i = c + 1; i < m.col - 1; i++) {
-                    if (m.mat[r][i] != 0) {
+                    if (Utils.setPrec(m.mat[r][i], 4) != 0) {
                         if (param[i] == -1) {
                             p++;
                             param[i] = p;
@@ -161,7 +160,7 @@ public class SPL {
                         res += (" + " + (ans));
                     }
                 } else {
-                    res += (" " + (ans));
+                    res += (" " + String.format("%.2f", ans));
                 }
                 res += ("\n");
                 r++; // lanjutkan ke baris berikutnya
@@ -193,7 +192,7 @@ public class SPL {
             Matrix ansMat = Matrix.multiplyMat(m1, m2);
             for (int i = 0; i < ansMat.row; i++) {
                 double ans = Utils.setPrec((0.000000 + ansMat.mat[i][0]), 6);
-                res += ("x_" + (i + 1) + " = " + (ans) + "\n");
+                res += ("x_" + (i + 1) + " = " + String.format("%.2f", ans) + "\n");
             }
         }
         return res;
@@ -208,7 +207,7 @@ public class SPL {
         if (m1.isSingular() || !m1.isSquare()) { // matriks tidak memiliki invers, tidak ada solusi unik
             res = "SPL memiliki banyak solusi atau tidak memiliki solusi. Silakan gunakan metode lain.\n";
         } else {
-            double det = Determinant.determinanEliminasiGauss(m);
+            double det = Determinant.determinanKofaktor(m1);
             double[] valX = new double[m.row];
             Matrix temp = new Matrix();
             for (int i = 0; i < m1.col; i++) {
@@ -216,11 +215,11 @@ public class SPL {
                 for (int j = 0; j < m1.row; j++) { // temp <- masukkan kolom ke i matriks persamaan dengan matriks hasil
                     temp.mat[j][i] = m2.mat[j][0];
                 }
-                valX[i] = Determinant.determinanEliminasiGauss(temp) / det; // hitung nilai xi
+                valX[i] = Determinant.determinanKofaktor(temp) / det; // hitung nilai xi
             }
             for (int i = 0; i < m.row; i++) {
-                double ans = Utils.setPrec((0.000000 + valX[i] / det), 6);
-                res += ("x_" + (i + 1) + " = " + (ans) + "\n");
+                double ans = Utils.setPrec((0.000000 + valX[i]), 6);
+                res += ("x_" + (i + 1) + " = " + String.format("%.2f", ans) + "\n");
             }
         }
         return res;
