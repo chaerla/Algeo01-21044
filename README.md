@@ -6,8 +6,11 @@ This is a Java project which we named JAR Calculator (taken from our team's name
 
 .
 ├── README.md
+
 ├── bin/
+
 │   ├── Aplikasi/
+
 │   │   ├── BicubicInterpolationApp.class
 │   │   ├── DeterminantApp.class
 │   │   ├── InterpolasiApp.class
