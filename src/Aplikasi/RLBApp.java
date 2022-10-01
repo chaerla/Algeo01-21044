@@ -51,14 +51,14 @@ public class RLBApp {
         } catch (FileNotFoundException e) {
             System.out.println("File tidak ditemukan.");
         }
-        ret.row = rowcnt;
+        ret.row = rowcnt - (colcnt - 2);
         ret.col = colcnt + 1;
         ret.mat = new double[ret.row][ret.col];
         try {
             File file = new File("../test/input/" + fileName);
             Scanner fReader = new Scanner(file);
             int i = 0;
-            while (i < rowcnt) {
+            while (i < ret.row) {
                 if (i != 0) {
                     String s = fReader.nextLine();
                     String[] temp = s.split(" ", 0);
@@ -69,14 +69,17 @@ public class RLBApp {
                 }
                 i++;
             }
-            String s = fReader.nextLine();
-            String[] temp = s.split(" ", 0);
-            x.row = temp.length;
+            x.row = ret.col - 1;
             x.col = 1;
             x.mat = new double[x.row][1];
             i = 0;
-            for (int j = 0; j < temp.length; j++) {
-                x.mat[j][i] = Utils.setPrec(Utils.toDouble(temp[j]), 8);
+            while (fReader.hasNextLine()) {
+                String s = fReader.nextLine();
+                String[] temp = s.split(" ", 0);
+                for (int j = 0; j < temp.length; j++) {
+                    x.mat[i][j] = Utils.setPrec(Utils.toDouble(temp[j]), 8);
+                }
+                i++;
             }
             fReader.close();
         } catch (FileNotFoundException e) {
