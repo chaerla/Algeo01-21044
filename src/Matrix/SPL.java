@@ -37,12 +37,11 @@ public class SPL {
                 noSolution = (m.mat[r][c] != 0);
             }
             else {
-                boolean hasparam = false;
+                boolean hasparam = false, isfirst = true;
                 String temp = new String();
                 String tempparam = new String();
                 double ans;
                 temp = ("x_" + (c + 1) + " =");
-                hasparam = false;
                 for(int i=c+1; i < m.col-1; i++){
                     if(m.mat[r][i] != 0){
                         if(param[i] == -1){
@@ -52,10 +51,16 @@ public class SPL {
                         }
                         subs[r][i] -= m.mat[r][i];  // pindahkan ke ruas kanan persamaan
                         ans = Utils.setPrec((subs[r][i]), 6);
-                        if(ans < 0){
-                            temp += (" - " + (-ans));
-                        } else {
-                            temp += (" + " + (ans));
+                        if(isfirst){
+                            temp += (" " + (ans));
+                            isfirst = false;
+                        }
+                        else {
+                            if(ans < 0){
+                                temp += (" - " + (-ans));
+                            } else {
+                                temp += (" + " + (ans));
+                            }
                         }
                         temp += ("*" + "t_" + (param[i]));
 
@@ -108,12 +113,11 @@ public class SPL {
         }
         
         double ans;
-        boolean hasparam;
         int r=0, c=0;
         while(r < m.row && c < m.col-1){
             if(m.mat[r][c] != 0){   // maju hingga terdapat elemen bukan 0 (leading 1) atau kolom terakhir
+                boolean hasparam = false, isfirst = true;
                 res += ("x_" + (c + 1) + " =");
-                hasparam = false;
                 for(int i=c+1; i < m.col-1; i++){
                     if(m.mat[r][i] != 0){
                         if(param[i] == -1){
@@ -121,10 +125,16 @@ public class SPL {
                             param[i] = p;
                         }
                         ans = Utils.setPrec((-m.mat[r][i]), 6);
-                        if(ans < 0){
-                            res += (" - " + (-ans));
-                        } else {
-                            res += (" + " + (ans));
+                        if(isfirst){
+                            res += (" " + (ans));
+                            isfirst = false;
+                        }
+                        else {
+                            if(ans < 0){
+                                res += (" - " + (-ans));
+                            } else {
+                                res += (" + " + (ans));
+                            }
                         }
                         res += ("*" + "t_" + (param[i]));
 
