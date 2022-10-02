@@ -4,43 +4,45 @@ This is a Java project which we named JAR Calculator (taken from our team's name
 
 ## File structure
 
-. <br>
-├── README.md <br>
-├── bin/ <br>
-│&nbsp; &nbsp; &nbsp;├── Aplikasi/ <br>
-│&nbsp; &nbsp; &nbsp;│&nbsp; &nbsp; &nbsp;├── BicubicInterpolationApp.class <br>
-│&nbsp; &nbsp; &nbsp;│&nbsp; &nbsp; &nbsp;├── DeterminantApp.class <br>
-│&nbsp; &nbsp; &nbsp;│&nbsp; &nbsp; &nbsp;├── InterpolasiApp.class <br>
-│&nbsp; &nbsp; &nbsp;│&nbsp; &nbsp; &nbsp;├── InverseApp.class <br>
-│&nbsp; &nbsp; &nbsp;│&nbsp; &nbsp; &nbsp;├── RLBApp.class <br>
-│&nbsp; &nbsp; &nbsp;│&nbsp; &nbsp; &nbsp;└── SPLApp.class <br>
-│&nbsp; &nbsp; &nbsp;├── Matrix/ <br>
-│&nbsp; &nbsp; &nbsp;│&nbsp; &nbsp; &nbsp;├── Determinant.class <br>
-│&nbsp; &nbsp; &nbsp;│&nbsp; &nbsp; &nbsp;├── Inverse.class <br>
-│&nbsp; &nbsp; &nbsp;│&nbsp; &nbsp; &nbsp;├── Matrix.class <br>
-│&nbsp; &nbsp; &nbsp;│&nbsp; &nbsp; &nbsp;└── SPL.class <br>
-│&nbsp; &nbsp; &nbsp;├── Utils/ <br>
-│&nbsp; &nbsp; &nbsp;│&nbsp; &nbsp; &nbsp;└── Utils.class <br>
-│&nbsp; &nbsp; &nbsp;└── Main.class <br>
-├── src/ <br>
-│&nbsp; &nbsp; &nbsp;├── Aplikasi/ <br>
-│&nbsp; &nbsp; &nbsp;│&nbsp; &nbsp; &nbsp;├── BicubicInterpolationApp.java <br>
-│&nbsp; &nbsp; &nbsp;│&nbsp; &nbsp; &nbsp;├── DeterminantApp.java <br>
-│&nbsp; &nbsp; &nbsp;│&nbsp; &nbsp; &nbsp;├── InterpolasiApp.java <br>
-│&nbsp; &nbsp; &nbsp;│&nbsp; &nbsp; &nbsp;├── InverseApp.java <br>
-│&nbsp; &nbsp; &nbsp;│&nbsp; &nbsp; &nbsp;├── RLBApp.java <br>
-│&nbsp; &nbsp; &nbsp;│&nbsp; &nbsp; &nbsp;└── SPLApp.java <br>
-│&nbsp; &nbsp; &nbsp;├── Matrix/ <br>
-│&nbsp; &nbsp; &nbsp;│&nbsp; &nbsp; &nbsp;├── Determinant.java <br>
-│&nbsp; &nbsp; &nbsp;│&nbsp; &nbsp; &nbsp;├── Inverse.java <br>
-│&nbsp; &nbsp; &nbsp;│&nbsp; &nbsp; &nbsp;├── Matrix.java <br>
-│&nbsp; &nbsp; &nbsp;│&nbsp; &nbsp; &nbsp;└── SPL.java <br>
-│&nbsp; &nbsp; &nbsp;├── Utils/ <br>
-│&nbsp; &nbsp; &nbsp;│&nbsp; &nbsp; &nbsp;└── Utils.java <br>
-│&nbsp; &nbsp; &nbsp;└── Main.java <br>
-└── test/ <br>
-├── input <br>
-└── output <br>
+Algeo01-21044/ <br>
+┣ bin/ <br>
+┃ ┣ Aplikasi/ <br>
+┃ ┃ ┣ BicubicInterpolationApp.class <br>
+┃ ┃ ┣ DeterminantApp.class <br>
+┃ ┃ ┣ InterpolasiApp.class <br>
+┃ ┃ ┣ InverseApp.class <br>
+┃ ┃ ┣ RLBApp.class <br>
+┃ ┃ ┗ SPLApp.class <br>
+┃ ┣ Matrix/ <br>
+┃ ┃ ┣ Determinant.class <br>
+┃ ┃ ┣ Inverse.class <br>
+┃ ┃ ┣ Matrix.class <br>
+┃ ┃ ┗ SPL.class <br>
+┃ ┣ Utils/ <br>
+┃ ┃ ┗ Utils.class <br>
+┃ ┗ Main.class <br> 
+┣ lib/ <br>
+┣ src/ <br>
+┃ ┣ Aplikasi/ <br>
+┃ ┃ ┣ BicubicInterpolationApp.java <br> 
+┃ ┃ ┣ DeterminantApp.java <br> 
+┃ ┃ ┣ InterpolasiApp.java <br> 
+┃ ┃ ┣ InverseApp.java <br>
+┃ ┃ ┣ RLBApp.java <br>
+┃ ┃ ┗ SPLApp.java <br>
+┃ ┣ Matrix/ <br>
+┃ ┃ ┣ Determinant.java <br>
+┃ ┃ ┣ Inverse.java <br>
+┃ ┃ ┣ Matrix.java <br>
+┃ ┃ ┗ SPL.java <br>
+┃ ┣ Utils/ <br>
+┃ ┃ ┗ Utils.java <br>
+┃ ┗ Main.java <br>
+┣ test/ <br>
+┃ ┣ input/ <br>
+┃ ┗ output/ <br>
+┣ .gitignore <br>
+┗ README.md <br>
 
 ## How to run
 
