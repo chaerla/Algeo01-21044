@@ -53,5 +53,12 @@ Clone this repo https://github.com/chaerla/Algeo01-21044.git
 1. Go to folder bin `cd bin`
 2. Open in terminal
 3. Run Main.class `java Main`
+4. File inputs can be put into the `./test` folder
 
 ### Using .jar
+
+1. Download the .jar file that is located in `./lib`
+2. Put the .jar file in a certain folder
+3. In root of the folder that contains .jar file, create a new folder named `test` for file input
+4. cd to the folder containing the .jar file
+5. Use `java -jar <jar-file-name>` to run the program
