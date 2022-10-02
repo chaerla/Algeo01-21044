@@ -8,6 +8,9 @@ import Utils.*;
 public class RLBApp {
     private static Scanner in = new Scanner(System.in);
 
+    // Membuat normal estimastion equation berdasarkan Matrix m dalam bentuk
+    // augmented matrix dan mengembalikan Matrix eselon tereduksi dari augmented
+    // matrix tersebut.
     public static Matrix solve(Matrix m) {
         Matrix rlbSPL = new Matrix(m.col - 1, m.col);
         Matrix rlbX = new Matrix();
@@ -28,6 +31,10 @@ public class RLBApp {
         rlbSPL.eliminasiGaussJordan();
         return rlbSPL;
     }
+
+    // Membaca semua nilai-nilai x1i, x2i, ..., xni, nilai yi dari sebuah file, dan
+    // menyimpannya ke Matrix ret, serta membaca nilai-nilai xk yang akan ditaksir
+    // nilai fungsinya dari file yang sama dan menyimpannya ke Matrix x.
 
     public static void readFile(Matrix ret, Matrix x) {
         String fileName = new String();
@@ -88,6 +95,11 @@ public class RLBApp {
 
     }
 
+    // Membaca semua nilai-nilai x1i, x2i, ..., xni, nilai yi dari keyboard, dan
+    // menyimpannya ke Matrix ret, serta membaca nilai-nilai xk yang akan ditaksir
+    // nilai
+    // fungsinya dari keyboard dan menyimpannya ke Matrix x.
+
     public static void readKey(Matrix ret, Matrix x) {
         int n, m;
         System.out.print("Masukkan jumlah peubah (n): ");
@@ -122,6 +134,14 @@ public class RLBApp {
             System.out.println();
         }
     }
+
+    // I.S. : Matrix m terdefinisi sebagai augmented matrix yang memuat koefisien
+    // persamaan regresi dan Matrix x
+    // terdefinisi sebagai matrix yang memuat nilai-nilai xk yang akan ditaksir
+    // nilai fungsinya.
+    // F.S. : Persamaan regresi dan hasil taksiran ditampilkan di layar dan atau
+    // tersimpan ke dalam sebuah
+    // file jika pengguna memilih untuk menyimpan hasil ke file.
 
     public static void output(Matrix m, Matrix x) {
         String regresi = "";

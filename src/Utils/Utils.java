@@ -8,9 +8,11 @@ import java.math.*;
 public class Utils {
     private static Scanner in = new Scanner(System.in);
 
+    // Mengembalikan nilai double dari str.
     public static double toDouble(String str) {
         double ret = 0;
         String[] temp = str.split("/");
+        // Handle input berupa pecahan
         if (temp.length == 1) {
             try {
                 ret = Double.parseDouble(str);
@@ -27,6 +29,7 @@ public class Utils {
         return ret;
     }
 
+    // Menyimpan Matrix m ke dalam sebuah file jika pengguna ingin menyimpan file.
     public static void matrixToFile(Matrix m) {
         System.out.println();
         System.out.print("Apakah Anda ingin menyimpan hasil ke dalam sebuah file (Y/N)? ");
@@ -60,27 +63,11 @@ public class Utils {
                 System.out.println("Input tidak dikenali. Hasil tidak disimpan.");
                 break;
         }
-        // String fileName = new String();
-        // System.out.print("Masukkan nama file: ");
-        // fileName = in.nextLine();
-        // try {
-        // FileWriter fWriter = new FileWriter("../test/output/" + fileName);
-        // for (int i = 0; i < m.row; i++) {
-        // for (int j = 0; j < m.col; j++) {
-        // String temp = Double.toString(m.mat[i][j]);
-        // fWriter.write(temp);
-        // if (j != m.col - 1) {
-        // fWriter.write(" ");
-        // }
-        // }
-        // fWriter.write("\n");
-        // }
-        // fWriter.close();
-        // } catch (IOException e) {
-        // System.out.print(e.getMessage());
-        // }
     }
 
+    // I.S. : String s terdefinisi
+    // F.S. : String s disimpan dalam sebuah file jika pengguna ingin menyimpan
+    // file.
     public static void stringToFile(String s) {
         System.out.println();
         System.out.print("Apakah Anda ingin menyimpan hasil ke dalam sebuah file (Y/N)? ");
@@ -105,18 +92,9 @@ public class Utils {
                 System.out.println("Input tidak dikenali. Hasil tidak disimpan.");
                 break;
         }
-        // String fileName = new String();
-        // System.out.print("Masukkan nama file: ");
-        // fileName = in.nextLine();
-        // try {
-        // FileWriter fWriter = new FileWriter("../test/output/" + fileName);
-        // fWriter.write(s);
-        // fWriter.close();
-        // } catch (IOException e) {
-        // System.out.print(e.getMessage());
-        // }
     }
 
+    // Mengembalikan Matrix dengan elemen-elemen yang dibaca dari sebuah file.
     public static Matrix readMatrixFromFile() {
         String fileName = new String();
         System.out.print("Masukkan nama file: ");
@@ -159,6 +137,7 @@ public class Utils {
         return ret;
     }
 
+    // Membuat presisi sebuah double sesuai dengan decPlaces.
     public static double setPrec(double num, int decPlaces) {
         BigDecimal bd = new BigDecimal(num).setScale(decPlaces, RoundingMode.HALF_UP);
         double res = bd.doubleValue();

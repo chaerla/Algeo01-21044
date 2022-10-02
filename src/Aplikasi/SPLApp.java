@@ -15,10 +15,6 @@ public class SPLApp {
         int opt = 0;
         boolean isValid = false;
         boolean isFromFile = false;
-        // if (fromFile == 1) {
-        // return false;
-        // }
-        // return true;
         while (!isValid) {
             System.out.print("Masukkan pilihan input (1/2): ");
             try {

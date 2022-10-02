@@ -9,7 +9,8 @@ import java.util.*;
 public class BicubicInterpolationApp {
     private static Scanner in = new Scanner(System.in);
 
-    // persamaan matrix : y = Xa
+    // Mengembalikan Matrix berukuran 16x16 yang merepresentasikan Matrix X untuk
+    // nilai masukan f(a,b) diaman a dan b pasti berada dalam rentang [0,1]
 
     public static Matrix getMatrixX() {
         Matrix ret = new Matrix(16, 16);
@@ -30,6 +31,7 @@ public class BicubicInterpolationApp {
         return ret;
     }
 
+    // Mengembalikan Matrix berukuran 16x1 yang merepresentasikan Matrix y.
     public static Matrix getMatrixY(Matrix m) {
         Matrix y = new Matrix(16, 1);
         int row = 0;
@@ -41,6 +43,10 @@ public class BicubicInterpolationApp {
         }
         return y;
     }
+    // I.S. : inputMat dan point sembarang.
+    // F.S. : inputMat terdefinisi yaitu nilai-nilai f(x,y) dan point terdefinisi
+    // yaitu point
+    // yang akan dicari interpolasi bikubiknya, keduanya dibaca dari sebuah file.
 
     public static void readFile(Matrix inputMat, double[] point) {
         String fileName = new String();
@@ -69,6 +75,9 @@ public class BicubicInterpolationApp {
             System.out.println(e.getMessage());
         }
     }
+
+    // I.S. : point terdefinisi, point[0] = a, point[1] = b
+    // F.S. : Mengembalikan hasil interpolasi bikubik titik (a,b)
 
     public static Matrix solve(double[] point, Matrix a) {
         Matrix X = new Matrix(1, 16);
